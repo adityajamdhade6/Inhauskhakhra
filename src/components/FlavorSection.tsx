@@ -47,7 +47,7 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-8">
-              <Button href="#reviews" variant={buttonVariant}>
+              <Button href="#flavours" variant={buttonVariant}>
                 Shop {flavor.name}
               </Button>
             </div>

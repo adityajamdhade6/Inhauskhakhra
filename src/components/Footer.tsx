@@ -5,7 +5,6 @@ const nav = [
   { href: "#flavours", label: "Flavours" },
   { href: "#why", label: "Why Khakhra" },
   { href: "#ingredients", label: "Ingredients" },
-  { href: "#reviews", label: "Reviews" },
 ];
 
 const social = ["Instagram", "TikTok", "X"];

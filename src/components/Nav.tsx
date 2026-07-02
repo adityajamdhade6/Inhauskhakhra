@@ -8,7 +8,6 @@ const links = [
   { href: "#flavours", label: "Flavours" },
   { href: "#why", label: "Why Khakhra" },
   { href: "#ingredients", label: "Ingredients" },
-  { href: "#reviews", label: "Reviews" },
 ];
 
 export function Nav() {

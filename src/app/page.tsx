@@ -3,7 +3,6 @@ import { BrandStatement } from "@/components/BrandStatement";
 import { FlavorSection } from "@/components/FlavorSection";
 import { WhyKhakhra } from "@/components/WhyKhakhra";
 import { Ingredients } from "@/components/Ingredients";
-import { Reviews } from "@/components/Reviews";
 import { CTASection } from "@/components/CTASection";
 import { Footer } from "@/components/Footer";
 import { flavors } from "@/lib/flavors";
@@ -20,7 +19,6 @@ export default function Home() {
       </div>
       <WhyKhakhra />
       <Ingredients />
-      <Reviews />
       <CTASection />
       <Footer />
     </main>
