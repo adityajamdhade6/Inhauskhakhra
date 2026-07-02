@@ -3,16 +3,18 @@ import { SpiceIcon } from "./graphics/SpiceIcon";
 import { Reveal } from "./motion/Reveal";
 import { SectionLabel } from "./ui/SectionLabel";
 
-const base = ["Rice", "Urad Dal", "Rock Salt", "Real Spices"];
+const base = ["Whole Wheat Flour", "Vegetable Oil", "Black Salt", "Real Spices"];
 const spices = [
   "Red Chilli",
-  "Cumin Seed",
+  "Aamchur",
+  "Cumin",
   "Turmeric",
+  "Ginger",
+  "Methi Leaf",
+  "Mint Leaf",
   "Garlic",
-  "Tamarind",
-  "Fenugreek Leaf",
-  "Szechuan Pepper",
-  "Mint",
+  "Paprika",
+  "Black Salt",
 ];
 
 export function Ingredients() {

@@ -33,7 +33,7 @@ export const flavors: Flavor[] = [
     colorLight: "var(--color-masala-light)",
     textOn: "ink",
     graphic: "sunburst",
-    ingredients: ["Red Chilli", "Amchur", "Roasted Cumin"],
+    ingredients: ["Tomato Powder", "Paprika", "Garlic"],
   },
   {
     id: "pani-puri",
@@ -47,7 +47,7 @@ export const flavors: Flavor[] = [
     colorLight: "var(--color-panipuri-light)",
     textOn: "ink",
     graphic: "waves",
-    ingredients: ["Mint", "Black Salt", "Tamarind"],
+    ingredients: ["Mint Leaf", "Garlic", "Parsley"],
   },
   {
     id: "jeera",
@@ -89,6 +89,6 @@ export const flavors: Flavor[] = [
     colorLight: "var(--color-schezwan-light)",
     textOn: "cream",
     graphic: "blob",
-    ingredients: ["Szechuan Pepper", "Garlic", "Dry Red Chilli"],
+    ingredients: ["Cinnamon", "Paprika", "Garlic"],
   },
 ];

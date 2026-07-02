@@ -2,8 +2,8 @@ type Shape = "chilli" | "leaf" | "seed" | "salt" | "garlic" | "pod" | "root";
 
 function shapeFor(name: string): Shape {
   const n = name.toLowerCase();
-  if (n.includes("chilli") || n.includes("pepper")) return "chilli";
-  if (n.includes("leaf") || n.includes("mint") || n.includes("turmeric")) return "leaf";
+  if (n.includes("chilli") || n.includes("pepper") || n.includes("paprika")) return "chilli";
+  if (n.includes("leaf") || n.includes("mint") || n.includes("turmeric") || n.includes("parsley")) return "leaf";
   if (n.includes("seed") || n.includes("cumin") || n.includes("ajwain")) return "seed";
   if (n.includes("salt")) return "salt";
   if (n.includes("garlic")) return "garlic";

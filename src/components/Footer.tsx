@@ -66,7 +66,21 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-cream/20 pt-6 text-xs font-medium text-cream/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 max-w-2xl border-t border-cream/20 pt-6 text-xs font-medium text-cream/50">
+          <p>
+            <span className="font-bold text-cream/70">Allergen Information:</span>{" "}
+            Contains Wheat. Manufactured in a facility that also processes
+            soybean products, peanuts, tree nuts, milk products and gluten
+            containing products.
+          </p>
+          <p className="mt-3">
+            <span className="font-bold text-cream/70">Storage:</span> After
+            opening, transfer to an airtight container and store in a cool,
+            dry place.
+          </p>
+        </div>
+
+        <div className="mt-6 flex flex-col gap-2 border-t border-cream/20 pt-6 text-xs font-medium text-cream/50 md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} Inhaus Khakhra. All rights reserved.</p>
           <p>Baked in small batches. Eaten in smaller windows of time.</p>
         </div>
