@@ -80,8 +80,19 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="mt-6 flex flex-col gap-2 border-t border-cream/20 pt-6 text-xs font-medium text-cream/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-6 flex flex-col gap-4 border-t border-cream/20 pt-6 text-xs font-medium text-cream/50 md:flex-row md:items-center md:justify-between">
           <p>&copy; {new Date().getFullYear()} Inhaus Khakhra. All rights reserved.</p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/privacy" className="hover:text-cream/80">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-cream/80">
+              Terms of Service
+            </Link>
+            <Link href="/shipping-returns" className="hover:text-cream/80">
+              Shipping &amp; Returns
+            </Link>
+          </div>
           <p>Baked in small batches. Eaten in smaller windows of time.</p>
         </div>
       </div>

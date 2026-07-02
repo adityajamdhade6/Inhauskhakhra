@@ -73,7 +73,7 @@ export const flavors: Flavor[] = [
     color: "var(--color-methi)",
     colorDark: "var(--color-methi-dark)",
     colorLight: "var(--color-methi-light)",
-    textOn: "cream",
+    textOn: "ink",
     graphic: "stripes",
     ingredients: ["Fenugreek Leaf", "Turmeric", "Green Chilli"],
   },
