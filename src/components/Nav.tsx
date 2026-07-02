@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { shopUrlForAll } from "@/lib/shopify";
 import { Button } from "./ui/Button";
 
 const links = [
@@ -12,6 +13,7 @@ const links = [
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const shopUrl = shopUrlForAll();
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
@@ -33,7 +35,7 @@ export function Nav() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="#flavours" variant="cream">
+          <Button href={shopUrl} variant="cream">
             Shop Now
           </Button>
         </div>
@@ -67,7 +69,7 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
-          <Button href="#flavours" variant="ink" className="w-fit">
+          <Button href={shopUrl} variant="ink" className="w-fit">
             Shop Now
           </Button>
         </div>

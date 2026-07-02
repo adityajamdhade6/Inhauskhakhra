@@ -1,4 +1,5 @@
 import type { Flavor } from "@/lib/flavors";
+import { shopUrlFor } from "@/lib/shopify";
 import { BackgroundGraphic } from "./graphics/BackgroundGraphic";
 import { ProductPack } from "./graphics/ProductPack";
 import { FloatingDisc } from "./graphics/FloatingDisc";
@@ -47,7 +48,7 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-8">
-              <Button href="#flavours" variant={buttonVariant}>
+              <Button href={shopUrlFor(flavor.id)} variant={buttonVariant}>
                 Shop {flavor.name}
               </Button>
             </div>

@@ -1,4 +1,5 @@
 import { flavors } from "@/lib/flavors";
+import { shopUrlForAll } from "@/lib/shopify";
 import { Nav } from "./Nav";
 import { Button } from "./ui/Button";
 import { BackgroundGraphic } from "./graphics/BackgroundGraphic";
@@ -32,7 +33,7 @@ export function Hero() {
             <p className="max-w-sm text-base font-medium text-cream/90 md:text-lg">
               Five bold flavours of small, round, baked-not-fried khakhra. Made for the crunch-obsessed.
             </p>
-            <Button href="#flavours" variant="cream">
+            <Button href={shopUrlForAll()} variant="cream">
               Shop The Pack
             </Button>
           </div>

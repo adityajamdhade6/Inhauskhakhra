@@ -1,3 +1,4 @@
+import { shopUrlForAll } from "@/lib/shopify";
 import { BackgroundGraphic } from "./graphics/BackgroundGraphic";
 import { FloatingDisc } from "./graphics/FloatingDisc";
 import { Reveal } from "./motion/Reveal";
@@ -26,7 +27,7 @@ export function CTASection() {
         </Reveal>
         <Reveal delay={0.25}>
           <div className="mt-8 flex justify-center">
-            <Button href="#flavours" variant="cream">
+            <Button href={shopUrlForAll()} variant="cream">
               Shop All Flavours
             </Button>
           </div>
