@@ -9,8 +9,8 @@ export function CTASection() {
     <section className="relative overflow-hidden bg-schezwan py-28 text-center md:py-36">
       <BackgroundGraphic variant="sunburst" className="text-schezwan-light opacity-30" />
 
-      <FloatingDisc size={44} accent="var(--color-cream)" rotate={-10} className="top-[15%] left-[8%] hidden md:block" />
-      <FloatingDisc size={34} accent="var(--color-cream)" rotate={18} className="right-[10%] bottom-[18%] hidden md:block" slow />
+      <FloatingDisc size={44} rotate={-10} className="top-[15%] left-[8%] hidden md:block" />
+      <FloatingDisc size={34} variant="bite" rotate={18} className="right-[10%] bottom-[18%] hidden md:block" slow />
 
       <div className="relative mx-auto max-w-3xl px-5">
         <Reveal>

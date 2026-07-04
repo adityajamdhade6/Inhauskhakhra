@@ -26,7 +26,7 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
       />
 
       <div
-        className={`relative z-10 mx-auto flex w-full max-w-[1400px] flex-col gap-14 px-5 md:px-10 lg:flex-row lg:items-center lg:gap-10 ${
+        className={`relative mx-auto flex w-full max-w-[1400px] flex-col gap-14 px-5 md:px-10 lg:flex-row lg:items-center lg:gap-10 ${
           reverse ? "lg:flex-row-reverse" : ""
         }`}
       >
@@ -68,14 +68,13 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
         <div className="relative flex flex-1 items-center justify-center py-6">
           <FloatingDisc
             size={54}
-            accent={flavor.colorDark}
             rotate={-16}
             className="top-[6%] left-[8%]"
             delay={0.1}
           />
           <FloatingDisc
             size={38}
-            accent={flavor.colorDark}
+            variant="bite"
             rotate={24}
             className="right-[6%] bottom-[10%]"
             slow
@@ -83,7 +82,6 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
           />
           <FloatingDisc
             size={30}
-            accent={flavor.colorDark}
             rotate={4}
             className="top-[42%] right-[2%] hidden sm:block"
             delay={0.9}

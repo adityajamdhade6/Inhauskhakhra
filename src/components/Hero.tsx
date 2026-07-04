@@ -19,7 +19,7 @@ export function Hero() {
 
       <Nav />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between gap-10 px-5 md:px-10">
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-between gap-10 px-5 md:px-10">
         <Reveal className="max-w-4xl">
           <p className="mb-4 text-sm font-bold tracking-[0.3em] text-cream/80 uppercase">
             Premium Coin Khakhra
@@ -55,9 +55,9 @@ export function Hero() {
         </div>
       </div>
 
-      <FloatingDisc size={40} accent="var(--color-cream)" rotate={-12} className="top-[26%] left-[6%] hidden md:block" delay={0.2} />
-      <FloatingDisc size={30} accent="var(--color-cream)" rotate={20} className="top-[20%] right-[8%] hidden md:block" slow delay={0.6} />
-      <FloatingDisc size={26} accent="var(--color-cream)" rotate={8} className="bottom-[30%] left-[3%] hidden md:block" delay={1} />
+      <FloatingDisc size={40} rotate={-12} className="top-[26%] left-[6%] hidden md:block" delay={0.2} />
+      <FloatingDisc size={30} variant="bite" rotate={20} className="top-[20%] right-[8%] hidden md:block" slow delay={0.6} />
+      <FloatingDisc size={26} rotate={8} className="bottom-[30%] left-[3%] hidden md:block" delay={1} />
     </section>
   );
 }

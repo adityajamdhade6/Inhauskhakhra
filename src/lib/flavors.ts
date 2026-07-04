@@ -18,6 +18,9 @@ export type Flavor = {
   textOn: "ink" | "cream";
   graphic: "sunburst" | "waves" | "rays" | "stripes" | "blob";
   ingredients: string[];
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
 };
 
 export const flavors: Flavor[] = [
@@ -34,6 +37,9 @@ export const flavors: Flavor[] = [
     textOn: "ink",
     graphic: "sunburst",
     ingredients: ["Tomato Powder", "Paprika", "Garlic"],
+    image: "/products/magic-masala.png",
+    imageWidth: 555,
+    imageHeight: 434,
   },
   {
     id: "pani-puri",
@@ -48,6 +54,9 @@ export const flavors: Flavor[] = [
     textOn: "ink",
     graphic: "waves",
     ingredients: ["Mint Leaf", "Garlic", "Parsley"],
+    image: "/products/pani-puri.png",
+    imageWidth: 567,
+    imageHeight: 434,
   },
   {
     id: "jeera",
@@ -62,6 +71,9 @@ export const flavors: Flavor[] = [
     textOn: "ink",
     graphic: "rays",
     ingredients: ["Cumin Seed", "Rock Salt", "Ajwain"],
+    image: "/products/jeera.png",
+    imageWidth: 574,
+    imageHeight: 434,
   },
   {
     id: "methi",
@@ -76,6 +88,9 @@ export const flavors: Flavor[] = [
     textOn: "ink",
     graphic: "stripes",
     ingredients: ["Fenugreek Leaf", "Turmeric", "Green Chilli"],
+    image: "/products/methi.png",
+    imageWidth: 438,
+    imageHeight: 429,
   },
   {
     id: "schezwan",
@@ -90,5 +105,8 @@ export const flavors: Flavor[] = [
     textOn: "cream",
     graphic: "blob",
     ingredients: ["Cinnamon", "Paprika", "Garlic"],
+    image: "/products/schezwan.png",
+    imageWidth: 417,
+    imageHeight: 429,
   },
 ];
