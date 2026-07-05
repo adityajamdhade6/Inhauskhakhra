@@ -38,8 +38,8 @@ export const flavors: Flavor[] = [
     graphic: "sunburst",
     ingredients: ["Tomato Powder", "Paprika", "Garlic"],
     image: "/products/magic-masala.png",
-    imageWidth: 555,
-    imageHeight: 434,
+    imageWidth: 700,
+    imageHeight: 663,
   },
   {
     id: "pani-puri",
@@ -55,8 +55,8 @@ export const flavors: Flavor[] = [
     graphic: "waves",
     ingredients: ["Mint Leaf", "Garlic", "Parsley"],
     image: "/products/pani-puri.png",
-    imageWidth: 567,
-    imageHeight: 434,
+    imageWidth: 696,
+    imageHeight: 700,
   },
   {
     id: "jeera",
@@ -89,8 +89,8 @@ export const flavors: Flavor[] = [
     graphic: "stripes",
     ingredients: ["Fenugreek Leaf", "Turmeric", "Green Chilli"],
     image: "/products/methi.png",
-    imageWidth: 438,
-    imageHeight: 429,
+    imageWidth: 700,
+    imageHeight: 680,
   },
   {
     id: "schezwan",
@@ -106,7 +106,7 @@ export const flavors: Flavor[] = [
     graphic: "blob",
     ingredients: ["Cinnamon", "Paprika", "Garlic"],
     image: "/products/schezwan.png",
-    imageWidth: 417,
-    imageHeight: 429,
+    imageWidth: 698,
+    imageHeight: 700,
   },
 ];
