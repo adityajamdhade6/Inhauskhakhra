@@ -1,0 +1,30 @@
+<section style="position:relative;overflow:hidden;background:var(--color-cream);padding:96px 0;">
+  {% render 'background-graphic', variant: 'waves', color: 'var(--color-ink)', opacity: 0.06 %}
+
+  <div class="ihk-container" style="position:relative;">
+    <div class="ihk-reveal">
+      <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.7);">{{ section.settings.eyebrow | default: 'The Philosophy' }}</span>
+    </div>
+    <div class="ihk-reveal">
+      <h2 class="ihk-display" style="margin-top:24px;color:var(--color-ink);font-size:clamp(40px, 7vw, 100px);">
+        {{ section.settings.headline | default: 'BAKED.<br>NOT FRIED.' }}
+      </h2>
+    </div>
+    <div class="ihk-reveal">
+      <p style="margin-top:32px;max-width:520px;margin-left:auto;font-size:18px;font-weight:500;color:var(--color-ink-soft);text-align:right;">
+        {{ section.settings.body | default: "Small. Round. Addictive. No oil slick, no guilt trip — just stone-baked coin khakhra that hits harder than it should." }}
+      </p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand statement",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Philosophy" },
+    { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "BAKED.<br>NOT FRIED." },
+    { "type": "textarea", "id": "body", "label": "Body text" }
+  ]
+}
+{% endschema %}

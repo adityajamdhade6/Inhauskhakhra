@@ -1,0 +1,186 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "Premium Coin Khakhra",
+        "headline": "CRUNCH<br>DIFFERENT.",
+        "subhead": "Five bold flavours of small, round, baked-not-fried khakhra. Made for the crunch-obsessed.",
+        "cta_label": "Shop The Pack",
+        "cta_link": "#flavours"
+      },
+      "blocks": {
+        "pack-1": { "type": "pack", "settings": { "rotate": -10, "width": 132 } },
+        "pack-2": { "type": "pack", "settings": { "rotate": -4, "width": 132 } },
+        "pack-3": { "type": "pack", "settings": { "rotate": 2, "width": 168 } },
+        "pack-4": { "type": "pack", "settings": { "rotate": 8, "width": 132 } },
+        "pack-5": { "type": "pack", "settings": { "rotate": 14, "width": 132 } }
+      },
+      "block_order": ["pack-1", "pack-2", "pack-3", "pack-4", "pack-5"]
+    },
+    "brand-statement": {
+      "type": "brand-statement",
+      "settings": {
+        "eyebrow": "The Philosophy",
+        "headline": "BAKED.<br>NOT FRIED.",
+        "body": "Small. Round. Addictive. No oil slick, no guilt trip — just stone-baked coin khakhra that hits harder than it should."
+      }
+    },
+    "flavour-magic-masala": {
+      "type": "flavour-section",
+      "settings": {
+        "color_scheme": "masala",
+        "text_on": "ink",
+        "graphic": "sunburst",
+        "reverse": false,
+        "anchor_id": "magic-masala",
+        "label": "Flavour No. 01",
+        "display_name": "MAGIC<br>MASALA",
+        "tagline": "The one everyone fights over. Bold masala, zero apology.",
+        "cta_label": "Shop"
+      },
+      "blocks": {
+        "i1": { "type": "ingredient", "settings": { "name": "Tomato Powder" } },
+        "i2": { "type": "ingredient", "settings": { "name": "Paprika" } },
+        "i3": { "type": "ingredient", "settings": { "name": "Garlic" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    },
+    "flavour-pani-puri": {
+      "type": "flavour-section",
+      "settings": {
+        "color_scheme": "panipuri",
+        "text_on": "ink",
+        "graphic": "waves",
+        "reverse": true,
+        "anchor_id": "pani-puri",
+        "label": "Flavour No. 02",
+        "display_name": "PANI<br>PURI",
+        "tagline": "Tangy, golgappa-sour, gone in one round.",
+        "cta_label": "Shop"
+      },
+      "blocks": {
+        "i1": { "type": "ingredient", "settings": { "name": "Mint Leaf" } },
+        "i2": { "type": "ingredient", "settings": { "name": "Garlic" } },
+        "i3": { "type": "ingredient", "settings": { "name": "Parsley" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    },
+    "flavour-jeera": {
+      "type": "flavour-section",
+      "settings": {
+        "color_scheme": "jeera",
+        "text_on": "ink",
+        "graphic": "rays",
+        "reverse": false,
+        "anchor_id": "jeera",
+        "label": "Flavour No. 03",
+        "display_name": "JEERA",
+        "tagline": "Toasted cumin, kept honest. Crunch that means it.",
+        "cta_label": "Shop"
+      },
+      "blocks": {
+        "i1": { "type": "ingredient", "settings": { "name": "Cumin Seed" } },
+        "i2": { "type": "ingredient", "settings": { "name": "Rock Salt" } },
+        "i3": { "type": "ingredient", "settings": { "name": "Ajwain" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    },
+    "flavour-methi": {
+      "type": "flavour-section",
+      "settings": {
+        "color_scheme": "methi",
+        "text_on": "ink",
+        "graphic": "stripes",
+        "reverse": true,
+        "anchor_id": "methi",
+        "label": "Flavour No. 04",
+        "display_name": "METHI",
+        "tagline": "Earthy fenugreek. Slightly bitter, entirely addictive.",
+        "cta_label": "Shop"
+      },
+      "blocks": {
+        "i1": { "type": "ingredient", "settings": { "name": "Fenugreek Leaf" } },
+        "i2": { "type": "ingredient", "settings": { "name": "Turmeric" } },
+        "i3": { "type": "ingredient", "settings": { "name": "Green Chilli" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    },
+    "flavour-schezwan": {
+      "type": "flavour-section",
+      "settings": {
+        "color_scheme": "schezwan",
+        "text_on": "cream",
+        "graphic": "blob",
+        "reverse": false,
+        "anchor_id": "schezwan",
+        "label": "Flavour No. 05",
+        "display_name": "SCHEZ<br>WAN",
+        "tagline": "Loud, red, unreasonable heat. You were warned.",
+        "cta_label": "Shop"
+      },
+      "blocks": {
+        "i1": { "type": "ingredient", "settings": { "name": "Cinnamon" } },
+        "i2": { "type": "ingredient", "settings": { "name": "Paprika" } },
+        "i3": { "type": "ingredient", "settings": { "name": "Garlic" } }
+      },
+      "block_order": ["i1", "i2", "i3"]
+    },
+    "why-khakhra": {
+      "type": "why-khakhra",
+      "settings": {
+        "eyebrow": "Why Coin Khakhra",
+        "headline": "MORE CRUNCH.<br>LESS BORING."
+      },
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "title": "BAKED. NOT FRIED.", "body": "Stone-baked till it snaps — not soaked in oil till it sags." } },
+        "f2": { "type": "feature", "settings": { "title": "100% ROUND. ZERO SHORTCUTS.", "body": "Every coin khakhra pressed thin and even for a crunch that carries through." } },
+        "f3": { "type": "feature", "settings": { "title": "5 FLAVOURS. ONE OBSESSION.", "body": "From Jeera-humble to Schezwan-loud, made for repeat offenders." } },
+        "f4": { "type": "feature", "settings": { "title": "NO PALM OIL. NO NONSENSE.", "body": "Ingredients you can actually pronounce, in a language you already speak." } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"]
+    },
+    "ingredients": {
+      "type": "ingredients",
+      "settings": {
+        "eyebrow": "What's Inside",
+        "headline": "Whole Wheat Flour. Vegetable Oil. Black Salt. Real Spices.",
+        "body": "No palm oil, no preservatives, no long words you need a dictionary for. Just the spice cabinet, baked in."
+      },
+      "blocks": {
+        "s1": { "type": "spice", "settings": { "name": "Red Chilli" } },
+        "s2": { "type": "spice", "settings": { "name": "Aamchur" } },
+        "s3": { "type": "spice", "settings": { "name": "Cumin" } },
+        "s4": { "type": "spice", "settings": { "name": "Turmeric" } },
+        "s5": { "type": "spice", "settings": { "name": "Ginger" } },
+        "s6": { "type": "spice", "settings": { "name": "Methi Leaf" } },
+        "s7": { "type": "spice", "settings": { "name": "Mint Leaf" } },
+        "s8": { "type": "spice", "settings": { "name": "Garlic" } },
+        "s9": { "type": "spice", "settings": { "name": "Paprika" } },
+        "s10": { "type": "spice", "settings": { "name": "Black Salt" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10"]
+    },
+    "cta": {
+      "type": "cta-section",
+      "settings": {
+        "headline": "GET YOUR<br>CRUNCH ON.",
+        "subhead": "Five flavours. One tin. Zero regrets.",
+        "cta_label": "Shop All Flavours",
+        "cta_link": "#flavours"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "brand-statement",
+    "flavour-magic-masala",
+    "flavour-pani-puri",
+    "flavour-jeera",
+    "flavour-methi",
+    "flavour-schezwan",
+    "why-khakhra",
+    "ingredients",
+    "cta"
+  ]
+}

@@ -1,0 +1,65 @@
+<section id="ingredients" style="position:relative;overflow:hidden;background:var(--color-ink);padding:96px 0;">
+  {% render 'background-graphic', variant: 'rays', color: 'var(--color-cream)', opacity: 0.06 %}
+
+  <div class="ihk-container" style="position:relative;">
+    <div class="ihk-reveal">
+      <span class="ihk-eyebrow" style="color:var(--color-cream);opacity:0.8;">{{ section.settings.eyebrow | default: "What's Inside" }}</span>
+    </div>
+    <div class="ihk-reveal">
+      <h2 class="ihk-display" style="margin-top:24px;color:var(--color-cream);font-size:clamp(32px, 4.2vw, 60px);">
+        {{ section.settings.headline | default: 'Whole Wheat Flour. Vegetable Oil. Black Salt. Real Spices.' }}
+      </h2>
+    </div>
+    <div class="ihk-reveal">
+      <p style="margin-top:24px;max-width:480px;font-size:18px;font-weight:500;color:rgba(251,241,224,0.8);">
+        {{ section.settings.body | default: "No palm oil, no preservatives, no long words you need a dictionary for. Just the spice cabinet, baked in." }}
+      </p>
+    </div>
+
+    <div style="margin-top:64px;padding-top:40px;border-top:1px solid rgba(251,241,224,0.2);display:flex;flex-wrap:wrap;gap:32px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'spice' -%}
+          <div class="ihk-reveal" style="display:flex;align-items:center;gap:12px;">
+            {% render 'spice-icon', name: block.settings.name, size: 30, color: 'var(--color-jeera)' %}
+            <span style="font-size:14px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--color-cream);">{{ block.settings.name }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ingredients",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "What's Inside" },
+    { "type": "text", "id": "headline", "label": "Headline" },
+    { "type": "textarea", "id": "body", "label": "Body" }
+  ],
+  "blocks": [
+    {
+      "type": "spice",
+      "name": "Ingredient",
+      "settings": [{ "type": "text", "id": "name", "label": "Name" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredients",
+      "blocks": [
+        { "type": "spice", "settings": { "name": "Red Chilli" } },
+        { "type": "spice", "settings": { "name": "Aamchur" } },
+        { "type": "spice", "settings": { "name": "Cumin" } },
+        { "type": "spice", "settings": { "name": "Turmeric" } },
+        { "type": "spice", "settings": { "name": "Ginger" } },
+        { "type": "spice", "settings": { "name": "Methi Leaf" } },
+        { "type": "spice", "settings": { "name": "Mint Leaf" } },
+        { "type": "spice", "settings": { "name": "Garlic" } },
+        { "type": "spice", "settings": { "name": "Paprika" } },
+        { "type": "spice", "settings": { "name": "Black Salt" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

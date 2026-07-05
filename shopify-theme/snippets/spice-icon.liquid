@@ -1,0 +1,46 @@
+{%- comment -%}
+  Usage: {% render 'spice-icon', name: 'Red Chilli', size: 26, color: '#191108' %}
+{%- endcomment -%}
+{%- assign name = name | default: '' | downcase -%}
+{%- assign size = size | default: 32 -%}
+{%- assign color = color | default: '#191108' -%}
+
+{%- assign shape = 'root' -%}
+{%- if name contains 'chilli' or name contains 'pepper' or name contains 'paprika' -%}
+  {%- assign shape = 'chilli' -%}
+{%- elsif name contains 'leaf' or name contains 'mint' or name contains 'turmeric' or name contains 'parsley' -%}
+  {%- assign shape = 'leaf' -%}
+{%- elsif name contains 'seed' or name contains 'cumin' or name contains 'ajwain' -%}
+  {%- assign shape = 'seed' -%}
+{%- elsif name contains 'salt' -%}
+  {%- assign shape = 'salt' -%}
+{%- elsif name contains 'garlic' -%}
+  {%- assign shape = 'garlic' -%}
+{%- elsif name contains 'tamarind' or name contains 'amchur' -%}
+  {%- assign shape = 'pod' -%}
+{%- endif -%}
+
+<svg viewBox="0 0 32 40" width="{{ size }}" height="{{ size | times: 40 | divided_by: 32 }}" role="presentation" aria-hidden="true">
+  <g fill="none" stroke="{{ color }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+    {%- case shape -%}
+      {%- when 'chilli' -%}
+        <path d="M20 8c6 0 10 6 8 14-2 9-10 18-16 18-5 0-8-4-8-9 0-10 8-23 16-23Z" />
+      {%- when 'leaf' -%}
+        <path d="M6 30C6 14 18 4 34 4c0 16-12 26-28 26Z" />
+      {%- when 'seed' -%}
+        <ellipse cx="12" cy="20" rx="5" ry="3" transform="rotate(-20 12 20)" />
+        <ellipse cx="22" cy="14" rx="5" ry="3" transform="rotate(10 22 14)" />
+        <ellipse cx="26" cy="26" rx="5" ry="3" transform="rotate(-35 26 26)" />
+      {%- when 'salt' -%}
+        <rect x="6" y="6" width="10" height="10" transform="rotate(20 11 11)" />
+        <rect x="18" y="18" width="8" height="8" transform="rotate(-15 22 22)" />
+        <rect x="20" y="4" width="6" height="6" transform="rotate(35 23 7)" />
+      {%- when 'garlic' -%}
+        <path d="M20 4c6 4 8 10 8 16 0 8-4 14-8 16-4-2-8-8-8-16 0-6 2-12 8-16Zm0 0v4M14 10c2-2 4-3 6-3M26 10c-2-2-4-3-6-3" />
+      {%- when 'pod' -%}
+        <path d="M4 20c0-10 8-16 18-16-2 10-4 14-4 20s2 10 4 12C12 36 4 30 4 20Z" />
+      {%- else -%}
+        <path d="M8 6c8 0 16 4 18 12 2 8-4 16-12 16-2-6-2-10 0-14-6 0-10-4-10-10 0-2 2-4 4-4Z" />
+    {%- endcase -%}
+  </g>
+</svg>

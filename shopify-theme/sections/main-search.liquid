@@ -1,0 +1,38 @@
+<section style="background:var(--color-cream);padding:160px 0 80px;min-height:100vh;">
+  <div class="ihk-container">
+    <h1 class="ihk-display" style="color:var(--color-ink);font-size:clamp(36px, 6vw, 64px);">SEARCH</h1>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" style="margin-top:32px;display:flex;gap:12px;max-width:480px;">
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Search products"
+        style="flex:1;padding:12px 16px;border:2px solid var(--color-ink);border-radius:8px;font-family:var(--font-body);"
+      >
+      <button type="submit" class="ihk-btn ihk-btn--ink">Search</button>
+    </form>
+
+    {%- if search.performed -%}
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:32px;">
+        {%- for item in search.results -%}
+          <a href="{{ item.url }}" style="display:block;text-align:center;">
+            {%- if item.featured_image -%}
+              <img src="{{ item.featured_image | image_url: width: 500 }}" alt="{{ item.title }}" style="width:100%;height:auto;">
+            {%- endif -%}
+            <p style="margin-top:16px;font-weight:700;color:var(--color-ink);">{{ item.title }}</p>
+          </a>
+        {%- else -%}
+          <p style="color:var(--color-ink-soft);">No results for "{{ search.terms }}".</p>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

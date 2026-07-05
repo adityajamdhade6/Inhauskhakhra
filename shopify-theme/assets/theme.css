@@ -1,0 +1,182 @@
+/* ---- Inhaus Khakhra design tokens ---- */
+:root {
+  --color-cream: #fbf1e0;
+  --color-cream-dim: #f3e3c4;
+  --color-ink: #191108;
+  --color-ink-soft: #4a3d2b;
+
+  --color-khakhra: #e7be7c;
+  --color-khakhra-dark: #c2934c;
+
+  --color-masala: #ff2d78;
+  --color-masala-dark: #d91f63;
+  --color-masala-light: #ff7aac;
+
+  --color-panipuri: #ff6a1a;
+  --color-panipuri-dark: #e2540a;
+  --color-panipuri-light: #ff9d5c;
+
+  --color-jeera: #ffcc00;
+  --color-jeera-dark: #e0af00;
+  --color-jeera-light: #ffe066;
+
+  --color-methi: #2e9e4f;
+  --color-methi-dark: #1f7a3b;
+  --color-methi-light: #67c485;
+
+  --color-schezwan: #c91224;
+  --color-schezwan-dark: #a91621;
+  --color-schezwan-light: #f0616a;
+
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-cream);
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ihk-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (min-width: 768px) {
+  .ihk-container {
+    padding: 0 40px;
+  }
+}
+
+.ihk-display {
+  font-family: var(--font-display);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.ihk-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.ihk-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: currentColor;
+}
+
+.ihk-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 13px 26px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  font-family: var(--font-body);
+}
+.ihk-btn:hover {
+  opacity: 0.85;
+}
+.ihk-btn--ink {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+.ihk-btn--cream {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+.ihk-btn--outline-ink {
+  background: transparent;
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+}
+.ihk-btn--outline-cream {
+  background: transparent;
+  color: var(--color-cream);
+  border: 2px solid var(--color-cream);
+}
+
+.ihk-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ihk-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ihk-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@keyframes ihk-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--float-rot, 0deg));
+  }
+  50% {
+    transform: translateY(-18px) rotate(var(--float-rot, 0deg));
+  }
+}
+.ihk-floating {
+  position: absolute;
+  pointer-events: none;
+  animation: ihk-float 6s ease-in-out infinite;
+}
+.ihk-floating--slow {
+  animation-duration: 9s;
+}
+
+.ihk-pack-shadow {
+  filter: drop-shadow(10px 14px 18px rgba(25, 17, 8, 0.35));
+}
+
+@media (max-width: 767px) {
+  .ihk-hide-mobile {
+    display: none !important;
+  }
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}

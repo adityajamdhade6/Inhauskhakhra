@@ -1,0 +1,169 @@
+{%- assign scheme = section.settings.color_scheme -%}
+{%- case scheme -%}
+  {%- when 'masala' -%}
+    {%- assign bg = 'var(--color-masala)' -%} {%- assign bg_dark = 'var(--color-masala-dark)' -%}
+  {%- when 'panipuri' -%}
+    {%- assign bg = 'var(--color-panipuri)' -%} {%- assign bg_dark = 'var(--color-panipuri-dark)' -%}
+  {%- when 'jeera' -%}
+    {%- assign bg = 'var(--color-jeera)' -%} {%- assign bg_dark = 'var(--color-jeera-dark)' -%}
+  {%- when 'methi' -%}
+    {%- assign bg = 'var(--color-methi)' -%} {%- assign bg_dark = 'var(--color-methi-dark)' -%}
+  {%- when 'schezwan' -%}
+    {%- assign bg = 'var(--color-schezwan)' -%} {%- assign bg_dark = 'var(--color-schezwan-dark)' -%}
+  {%- else -%}
+    {%- assign bg = 'var(--color-masala)' -%} {%- assign bg_dark = 'var(--color-masala-dark)' -%}
+{%- endcase -%}
+
+{%- assign text_color = 'var(--color-ink)' -%}
+{%- assign sub_color = 'var(--color-ink-soft)' -%}
+{%- assign btn_class = 'ihk-btn--ink' -%}
+{%- if section.settings.text_on == 'cream' -%}
+  {%- assign text_color = 'var(--color-cream)' -%}
+  {%- assign sub_color = 'rgba(251,241,224,0.85)' -%}
+  {%- assign btn_class = 'ihk-btn--cream' -%}
+{%- endif -%}
+
+{%- assign p = section.settings.product -%}
+
+<section id="{{ section.settings.anchor_id | default: section.id }}" style="position:relative;overflow:hidden;background:{{ bg }};min-height:100vh;display:flex;align-items:center;padding:80px 0;">
+  {% render 'background-graphic', variant: section.settings.graphic, color: text_color, opacity: 0.12 %}
+
+  <div class="ihk-container" style="position:relative;display:flex;flex-direction:column;gap:56px;{% if section.settings.reverse %}--flex-dir-lg:row-reverse;{% else %}--flex-dir-lg:row;{% endif %}" data-flavour-row>
+    <div style="flex:1;">
+      <div class="ihk-reveal">
+        <span class="ihk-eyebrow" style="color:{{ text_color }};opacity:0.7;">{{ section.settings.label }}</span>
+      </div>
+      <div class="ihk-reveal">
+        <h2 class="ihk-display" style="margin-top:20px;color:{{ text_color }};font-size:clamp(40px, 6vw, 88px);">
+          {{ section.settings.display_name }}
+        </h2>
+      </div>
+      <div class="ihk-reveal">
+        <p style="margin-top:24px;max-width:420px;font-size:19px;font-weight:500;color:{{ sub_color }};">
+          {{ section.settings.tagline }}
+        </p>
+      </div>
+      <div class="ihk-reveal">
+        <div style="margin-top:32px;">
+          {%- if p != blank -%}
+            <form data-ihk-cart-form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+              <button type="submit" class="ihk-btn {{ btn_class }}">
+                {{ section.settings.cta_label | default: 'Shop' }} {{ p.title }}
+              </button>
+            </form>
+          {%- else -%}
+            <a href="#" class="ihk-btn {{ btn_class }}">{{ section.settings.cta_label | default: 'Shop' }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="ihk-reveal">
+        <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:24px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'ingredient' -%}
+              <div style="display:flex;align-items:center;gap:8px;">
+                {% render 'spice-icon', name: block.settings.name, size: 26, color: text_color %}
+                <span style="font-size:12px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:{{ sub_color }};">{{ block.settings.name }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    <div style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:24px 0;min-height:280px;">
+      {% render 'floating-piece', size: 54, rotate: -16, position: 'top:6%;left:8%;', delay: 0.1 %}
+      {% render 'floating-piece', size: 38, variant: 'bite', rotate: 24, position: 'right:6%;bottom:10%;', slow: true, delay: 0.5 %}
+      {% render 'floating-piece', size: 30, rotate: 4, position: 'top:42%;right:2%;', delay: 0.9, hide_mobile: true %}
+
+      <div class="ihk-reveal">
+        {%- if p != blank -%}
+          <img
+            src="{{ p.featured_image | image_url: width: 700 }}"
+            alt="{{ p.title }}"
+            width="280"
+            loading="lazy"
+            style="width:280px;height:auto;transform:rotate({% if section.settings.reverse %}7{% else %}-7{% endif %}deg);filter:drop-shadow(10px 14px 18px rgba(25,17,8,0.35));"
+          >
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    [data-flavour-row] {
+      flex-direction: var(--flex-dir-lg);
+      align-items: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Flavour section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Colour",
+      "options": [
+        { "value": "masala", "label": "Magic Masala (pink)" },
+        { "value": "panipuri", "label": "Pani Puri (orange)" },
+        { "value": "jeera", "label": "Jeera (yellow)" },
+        { "value": "methi", "label": "Methi (green)" },
+        { "value": "schezwan", "label": "Schezwan (red)" }
+      ],
+      "default": "masala"
+    },
+    {
+      "type": "select",
+      "id": "text_on",
+      "label": "Text colour",
+      "options": [
+        { "value": "ink", "label": "Ink (dark)" },
+        { "value": "cream", "label": "Cream (light)" }
+      ],
+      "default": "ink"
+    },
+    {
+      "type": "select",
+      "id": "graphic",
+      "label": "Background graphic",
+      "options": [
+        { "value": "sunburst", "label": "Sunburst" },
+        { "value": "waves", "label": "Waves" },
+        { "value": "rays", "label": "Rays" },
+        { "value": "stripes", "label": "Stripes" },
+        { "value": "blob", "label": "Blob" }
+      ],
+      "default": "sunburst"
+    },
+    { "type": "checkbox", "id": "reverse", "label": "Reverse layout (image left)", "default": false },
+    { "type": "text", "id": "anchor_id", "label": "Anchor ID (for menu links, e.g. magic-masala)" },
+    { "type": "text", "id": "label", "label": "Small label", "default": "Flavour No. 01" },
+    { "type": "text", "id": "display_name", "label": "Display name (use <br> for line break)", "default": "MAGIC<br>MASALA" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline" },
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "cta_label", "label": "Button label prefix", "default": "Shop" }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [{ "type": "text", "id": "name", "label": "Name" }]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flavour section",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Red Chilli" } },
+        { "type": "ingredient", "settings": { "name": "Garlic" } },
+        { "type": "ingredient", "settings": { "name": "Paprika" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,77 @@
+<footer style="background:var(--color-ink);color:var(--color-cream);padding:64px 0;">
+  <div class="ihk-container">
+    <h2 class="ihk-display" style="font-size:13vw;color:var(--color-cream);">
+      {{ section.settings.footer_heading | default: 'INHAUS<br>KHAKHRA' }}
+    </h2>
+
+    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(251,241,224,0.2);display:grid;grid-template-columns:repeat(2,1fr);gap:40px;">
+      <div>
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.3em;color:rgba(251,241,224,0.5);text-transform:uppercase;">Explore</p>
+        <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:8px;">
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}" style="font-size:14px;font-weight:500;">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.3em;color:rgba(251,241,224,0.5);text-transform:uppercase;">Flavours</p>
+        <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:8px;">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'flavour_link' -%}
+              <li><a href="{{ block.settings.product.url | default: '#' }}" style="font-size:14px;font-weight:500;">{{ block.settings.label }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:56px;border-top:1px solid rgba(251,241,224,0.2);padding-top:24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:rgba(251,241,224,0.5);">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <div style="display:flex;gap:20px;">
+        {%- for link in linklists.footer.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_heading",
+      "label": "Footer heading",
+      "default": "INHAUS<br>KHAKHRA"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Explore menu",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "flavour_link",
+      "name": "Flavour link",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "flavour_link", "settings": { "label": "Magic Masala" } },
+      { "type": "flavour_link", "settings": { "label": "Pani Puri" } },
+      { "type": "flavour_link", "settings": { "label": "Jeera" } },
+      { "type": "flavour_link", "settings": { "label": "Methi" } },
+      { "type": "flavour_link", "settings": { "label": "Schezwan" } }
+    ]
+  }
+}
+{% endschema %}

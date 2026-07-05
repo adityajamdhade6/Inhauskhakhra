@@ -1,0 +1,15 @@
+<section style="background:var(--color-cream);padding:160px 0 80px;min-height:100vh;">
+  <div class="ihk-container" style="max-width:760px;">
+    <h1 class="ihk-display" style="color:var(--color-ink);font-size:clamp(36px, 6vw, 64px);">{{ page.title }}</h1>
+    <div style="margin-top:32px;font-size:16px;font-weight:500;color:var(--color-ink-soft);line-height:1.7;">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "settings": []
+}
+{% endschema %}

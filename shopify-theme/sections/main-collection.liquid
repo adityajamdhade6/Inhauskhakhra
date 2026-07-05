@@ -1,0 +1,24 @@
+<section style="background:var(--color-cream);padding:160px 0 80px;min-height:100vh;">
+  <div class="ihk-container">
+    <h1 class="ihk-display" style="color:var(--color-ink);font-size:clamp(36px, 6vw, 72px);">{{ collection.title }}</h1>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:32px;">
+      {%- for product in collection.products -%}
+        <a href="{{ product.url }}" style="display:block;text-align:center;">
+          <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}" style="width:100%;height:auto;filter:drop-shadow(6px 8px 12px rgba(25,17,8,0.25));">
+          <p style="margin-top:16px;font-weight:700;color:var(--color-ink);">{{ product.title }}</p>
+          <p style="margin-top:4px;color:var(--color-ink-soft);">{{ product.price | money }}</p>
+        </a>
+      {%- else -%}
+        <p style="color:var(--color-ink-soft);">No products in this collection yet.</p>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

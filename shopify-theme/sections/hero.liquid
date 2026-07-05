@@ -1,0 +1,78 @@
+<section id="top" style="position:relative;overflow:hidden;background:var(--color-masala);padding-top:112px;padding-bottom:40px;min-height:100vh;display:flex;flex-direction:column;">
+  {% render 'background-graphic', variant: 'sunburst', color: 'var(--color-masala-dark)', opacity: 0.4 %}
+
+  <div class="ihk-container" style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:40px;">
+    <div class="ihk-reveal" style="max-width:900px;">
+      <p style="margin:0 0 16px;font-size:14px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:rgba(251,241,224,0.8);">
+        {{ section.settings.eyebrow | default: 'Premium Coin Khakhra' }}
+      </p>
+      <h1 class="ihk-display" style="color:var(--color-cream);font-size:clamp(48px, 9vw, 130px);">
+        {{ section.settings.headline | default: 'CRUNCH<br>DIFFERENT.' }}
+      </h1>
+      <div style="margin-top:32px;display:flex;flex-direction:column;align-items:flex-start;gap:24px;">
+        <p style="max-width:380px;font-size:18px;font-weight:500;color:rgba(251,241,224,0.9);margin:0;">
+          {{ section.settings.subhead | default: 'Five bold flavours of small, round, baked-not-fried khakhra. Made for the crunch-obsessed.' }}
+        </p>
+        <a href="{{ section.settings.cta_link | default: '#flavours' }}" class="ihk-btn ihk-btn--cream">
+          {{ section.settings.cta_label | default: 'Shop The Pack' }}
+        </a>
+      </div>
+    </div>
+
+    <div style="position:relative;display:flex;align-items:flex-end;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:24px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'pack' -%}
+          {%- assign p = block.settings.product -%}
+          <div class="{% if forloop.index > 1 %}ihk-hide-mobile{% endif %}" style="transform:rotate({{ block.settings.rotate }}deg);">
+            {%- if p != blank -%}
+              <img
+                src="{{ p.featured_image | image_url: width: 400 }}"
+                alt="{{ p.title }}"
+                width="{{ block.settings.width }}"
+                loading="lazy"
+                style="width:{{ block.settings.width }}px;height:auto;filter:drop-shadow(10px 14px 18px rgba(25,17,8,0.35));"
+              >
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {% render 'floating-piece', size: 40, rotate: -12, position: 'top:26%;left:6%;', delay: 0.2, hide_mobile: true %}
+  {% render 'floating-piece', size: 30, variant: 'bite', rotate: 20, position: 'top:20%;right:8%;', slow: true, delay: 0.6, hide_mobile: true %}
+  {% render 'floating-piece', size: 26, rotate: 8, position: 'bottom:30%;left:3%;', delay: 1, hide_mobile: true %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Premium Coin Khakhra" },
+    { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "CRUNCH<br>DIFFERENT." },
+    { "type": "textarea", "id": "subhead", "label": "Subheading" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop The Pack" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "pack",
+      "name": "Product pack",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "range", "id": "width", "label": "Width (px)", "min": 100, "max": 220, "step": 4, "default": 140 },
+        { "type": "range", "id": "rotate", "label": "Rotation (deg)", "min": -20, "max": 20, "step": 1, "default": -6 }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "pack", "settings": { "rotate": -10, "width": 132 } },
+      { "type": "pack", "settings": { "rotate": -4, "width": 132 } },
+      { "type": "pack", "settings": { "rotate": 2, "width": 168 } },
+      { "type": "pack", "settings": { "rotate": 8, "width": 132 } },
+      { "type": "pack", "settings": { "rotate": 14, "width": 132 } }
+    ]
+  }
+}
+{% endschema %}

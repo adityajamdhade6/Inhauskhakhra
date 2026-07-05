@@ -1,0 +1,38 @@
+<section style="position:relative;overflow:hidden;background:var(--color-schezwan);padding:112px 0;text-align:center;">
+  {% render 'background-graphic', variant: 'sunburst', color: 'var(--color-schezwan-light)', opacity: 0.3 %}
+
+  {% render 'floating-piece', size: 44, rotate: -10, position: 'top:15%;left:8%;', hide_mobile: true %}
+  {% render 'floating-piece', size: 34, variant: 'bite', rotate: 18, position: 'right:10%;bottom:18%;', slow: true, hide_mobile: true %}
+
+  <div class="ihk-container" style="position:relative;max-width:720px;">
+    <div class="ihk-reveal">
+      <h2 class="ihk-display" style="color:var(--color-cream);font-size:clamp(40px, 7vw, 80px);">
+        {{ section.settings.headline | default: 'GET YOUR<br>CRUNCH ON.' }}
+      </h2>
+    </div>
+    <div class="ihk-reveal">
+      <p style="margin-top:24px;font-size:18px;font-weight:500;color:rgba(251,241,224,0.9);">
+        {{ section.settings.subhead | default: 'Five flavours. One tin. Zero regrets.' }}
+      </p>
+    </div>
+    <div class="ihk-reveal">
+      <div style="margin-top:32px;display:flex;justify-content:center;">
+        <a href="{{ section.settings.cta_link | default: '#flavours' }}" class="ihk-btn ihk-btn--cream">
+          {{ section.settings.cta_label | default: 'Shop All Flavours' }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA",
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "GET YOUR<br>CRUNCH ON." },
+    { "type": "textarea", "id": "subhead", "label": "Subheading" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop All Flavours" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ]
+}
+{% endschema %}

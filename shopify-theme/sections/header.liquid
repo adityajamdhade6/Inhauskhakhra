@@ -1,0 +1,84 @@
+{%- assign is_home = false -%}
+{%- if template.name == 'index' -%}
+  {%- assign is_home = true -%}
+{%- endif -%}
+
+<header
+  style="
+    {% if is_home %}position:absolute;top:0;left:0;right:0;z-index:50;{% else %}position:relative;background:var(--color-ink);{% endif %}
+  "
+>
+  <div class="ihk-container" style="display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px;">
+    <a href="{{ routes.root_url }}" style="font-family:var(--font-display);font-size:22px;letter-spacing:0.02em;color:var(--color-cream);">
+      {{ shop.name | default: 'INHAUS KHAKHRA' | upcase }}
+    </a>
+
+    <nav class="ihk-hide-mobile" style="display:flex;align-items:center;gap:32px;">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" style="font-size:14px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--color-cream);">
+          {{ link.title }}
+        </a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="ihk-hide-mobile">
+      <a href="{{ routes.cart_url }}" class="ihk-btn ihk-btn--cream">
+        Cart (<span data-cart-count>{{ cart.item_count }}</span>)
+      </a>
+    </div>
+
+    <button
+      type="button"
+      data-nav-toggle
+      aria-label="Open menu"
+      aria-expanded="false"
+      style="display:none;width:40px;height:40px;background:none;border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:6px;"
+      class="ihk-nav-toggle"
+    >
+      <span style="width:24px;height:2px;background:var(--color-cream);"></span>
+      <span style="width:24px;height:2px;background:var(--color-cream);"></span>
+      <span style="width:24px;height:2px;background:var(--color-cream);"></span>
+    </button>
+  </div>
+
+  <div data-nav-panel class="ihk-nav-panel">
+    <div style="display:flex;flex-direction:column;gap:20px;background:var(--color-cream);border:3px solid var(--color-ink);border-radius:24px;padding:32px;margin:0 20px 20px;box-shadow:6px 6px 0 var(--color-ink);">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" style="font-family:var(--font-display);font-size:24px;color:var(--color-ink);">
+          {{ link.title }}
+        </a>
+      {%- endfor -%}
+      <a href="{{ routes.cart_url }}" class="ihk-btn ihk-btn--ink" style="width:fit-content;">
+        Cart (<span data-cart-count>{{ cart.item_count }}</span>)
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .ihk-nav-panel {
+    display: none;
+  }
+  .ihk-nav-panel.is-open {
+    display: block;
+  }
+  @media (max-width: 767px) {
+    .ihk-nav-toggle {
+      display: flex !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
