@@ -88,7 +88,7 @@
           <input type="hidden" name="selling_plan" data-selling-plan-input disabled>
         {%- endif -%}
 
-        <div>
+        <div data-sticky-trigger>
           <button type="submit" class="ihk-btn ihk-btn--ink" data-product-submit {% unless p.available %}disabled{% endunless %}>
             {% if p.available %}Add to Cart{% else %}Sold Out{% endif %}
           </button>
@@ -114,6 +114,8 @@
     </div>
   </div>
 </section>
+
+{% render 'sticky-cta-bar', product: p %}
 
 {%- if section.settings.show_comparison -%}
   <section style="background:var(--color-ink);padding:80px 0;">

@@ -1,0 +1,59 @@
+<section id="how-its-made" style="background:var(--color-ink);padding:88px 0;">
+  <div class="ihk-container">
+    <div class="ihk-reveal" style="max-width:640px;">
+      <span class="ihk-eyebrow" style="color:rgba(251,241,224,0.7);">{{ section.settings.eyebrow | default: 'How It\'s Made' }}</span>
+      <h2 class="ihk-display" style="margin-top:16px;color:var(--color-cream);font-size:clamp(28px, 4.5vw, 52px);">
+        {{ section.settings.headline | default: 'Stone-Baked. Never Fried.' }}
+      </h2>
+    </div>
+
+    <div style="margin-top:56px;display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:32px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          <div class="ihk-reveal">
+            <span class="ihk-display" style="font-size:15px;color:var(--color-jeera);">
+              {% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}
+            </span>
+            <h3 class="ihk-display" style="margin-top:10px;color:var(--color-cream);font-size:22px;">
+              {{ block.settings.title }}
+            </h3>
+            <p style="margin-top:8px;font-size:15px;font-weight:500;color:rgba(251,241,224,0.75);">
+              {{ block.settings.body }}
+            </p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "How it's made",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How It's Made" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Stone-Baked. Never Fried." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "body", "label": "Body" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "How it's made",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Whole Wheat, Rolled Thin", "body": "Dough pressed into thin, even coins — no shortcuts on thickness." } },
+        { "type": "step", "settings": { "title": "Stone-Baked, Not Fried", "body": "Baked until it snaps clean, so there's no oil left behind to soak through the pack." } },
+        { "type": "step", "settings": { "title": "Real Spice, Added Last", "body": "Each flavour's spice blend is added post-bake so the crunch stays honest." } },
+        { "type": "step", "settings": { "title": "Sealed Fresh, Small Batch", "body": "Packed in small batches and sealed for freshness — not stockpiled in a warehouse." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

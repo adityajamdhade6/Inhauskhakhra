@@ -3,133 +3,41 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "Premium Coin Khakhra",
-        "headline": "CRUNCH<br>DIFFERENT.",
-        "subhead": "Five bold flavours of small, round, baked-not-fried khakhra. Made for the crunch-obsessed.",
-        "cta_label": "Shop The Pack",
-        "cta_link": "#flavours"
-      },
-      "blocks": {
-        "pack-1": { "type": "pack", "settings": { "rotate": -10, "width": 132, "fallback_handle": "magic-masala" } },
-        "pack-2": { "type": "pack", "settings": { "rotate": -4, "width": 132, "fallback_handle": "pani-puri" } },
-        "pack-3": { "type": "pack", "settings": { "rotate": 2, "width": 168, "fallback_handle": "jeera" } },
-        "pack-4": { "type": "pack", "settings": { "rotate": 8, "width": 132, "fallback_handle": "methi" } },
-        "pack-5": { "type": "pack", "settings": { "rotate": 14, "width": 132, "fallback_handle": "schezwan" } }
-      },
-      "block_order": ["pack-1", "pack-2", "pack-3", "pack-4", "pack-5"]
-    },
-    "brand-statement": {
-      "type": "brand-statement",
-      "settings": {
-        "eyebrow": "The Philosophy",
-        "headline": "BAKED.<br>NOT FRIED.",
-        "body": "Small. Round. Addictive. No oil slick, no guilt trip — just stone-baked coin khakhra that hits harder than it should."
-      }
-    },
-    "flavour-magic-masala": {
-      "type": "flavour-section",
-      "settings": {
-        "color_scheme": "masala",
-        "text_on": "ink",
-        "graphic": "sunburst",
-        "reverse": false,
-        "anchor_id": "magic-masala",
-        "label": "Flavour No. 01",
-        "display_name": "MAGIC<br>MASALA",
-        "tagline": "The one everyone fights over. Bold masala, zero apology.",
-        "cta_label": "Shop",
+        "headline": "A Snack That Skips The Guilt Trip.",
+        "subhead": "Thin, crispy, stone-baked coin khakhra in five bold flavours. Never fried. Never boring.",
+        "show_rating": false,
+        "cta_label": "Shop Now",
         "fallback_handle": "magic-masala"
       },
       "blocks": {
-        "i1": { "type": "ingredient", "settings": { "name": "Tomato Powder" } },
-        "i2": { "type": "ingredient", "settings": { "name": "Paprika" } },
-        "i3": { "type": "ingredient", "settings": { "name": "Garlic" } }
+        "b1": { "type": "badge", "settings": { "label": "No Palm Oil" } },
+        "b2": { "type": "badge", "settings": { "label": "Baked, Not Fried" } },
+        "b3": { "type": "badge", "settings": { "label": "100% Vegetarian" } },
+        "b4": { "type": "badge", "settings": { "label": "Made In India" } }
       },
-      "block_order": ["i1", "i2", "i3"]
+      "block_order": ["b1", "b2", "b3", "b4"]
     },
-    "flavour-pani-puri": {
-      "type": "flavour-section",
-      "settings": {
-        "color_scheme": "panipuri",
-        "text_on": "ink",
-        "graphic": "waves",
-        "reverse": true,
-        "anchor_id": "pani-puri",
-        "label": "Flavour No. 02",
-        "display_name": "PANI<br>PURI",
-        "tagline": "Tangy, golgappa-sour, gone in one round.",
-        "cta_label": "Shop",
-        "fallback_handle": "pani-puri"
-      },
+    "trust-badges": {
+      "type": "trust-badges",
+      "settings": {},
       "blocks": {
-        "i1": { "type": "ingredient", "settings": { "name": "Mint Leaf" } },
-        "i2": { "type": "ingredient", "settings": { "name": "Garlic" } },
-        "i3": { "type": "ingredient", "settings": { "name": "Parsley" } }
+        "t1": { "type": "badge", "settings": { "icon": "veg", "label": "100% Vegetarian" } },
+        "t2": { "type": "badge", "settings": { "icon": "baked", "label": "Baked, Not Fried" } },
+        "t3": { "type": "badge", "settings": { "icon": "no-palm-oil", "label": "No Palm Oil" } },
+        "t4": { "type": "badge", "settings": { "icon": "small-batch", "label": "Small Batch" } }
       },
-      "block_order": ["i1", "i2", "i3"]
+      "block_order": ["t1", "t2", "t3", "t4"]
     },
-    "flavour-jeera": {
-      "type": "flavour-section",
-      "settings": {
-        "color_scheme": "jeera",
-        "text_on": "ink",
-        "graphic": "rays",
-        "reverse": false,
-        "anchor_id": "jeera",
-        "label": "Flavour No. 03",
-        "display_name": "JEERA",
-        "tagline": "Toasted cumin, kept honest. Crunch that means it.",
-        "cta_label": "Shop",
-        "fallback_handle": "jeera"
-      },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": { "eyebrow": "Most Reordered", "headline": "Start Here." },
       "blocks": {
-        "i1": { "type": "ingredient", "settings": { "name": "Cumin Seed" } },
-        "i2": { "type": "ingredient", "settings": { "name": "Rock Salt" } },
-        "i3": { "type": "ingredient", "settings": { "name": "Ajwain" } }
+        "p1": { "type": "product", "settings": { "fallback_handle": "magic-masala", "tag": "Best Seller" } },
+        "p2": { "type": "product", "settings": { "fallback_handle": "schezwan", "tag": "Spiciest" } },
+        "p3": { "type": "product", "settings": { "fallback_handle": "jeera", "tag": "" } },
+        "p4": { "type": "product", "settings": { "fallback_handle": "methi", "tag": "" } }
       },
-      "block_order": ["i1", "i2", "i3"]
-    },
-    "flavour-methi": {
-      "type": "flavour-section",
-      "settings": {
-        "color_scheme": "methi",
-        "text_on": "ink",
-        "graphic": "stripes",
-        "reverse": true,
-        "anchor_id": "methi",
-        "label": "Flavour No. 04",
-        "display_name": "METHI",
-        "tagline": "Earthy fenugreek. Slightly bitter, entirely addictive.",
-        "cta_label": "Shop",
-        "fallback_handle": "methi"
-      },
-      "blocks": {
-        "i1": { "type": "ingredient", "settings": { "name": "Fenugreek Leaf" } },
-        "i2": { "type": "ingredient", "settings": { "name": "Turmeric" } },
-        "i3": { "type": "ingredient", "settings": { "name": "Green Chilli" } }
-      },
-      "block_order": ["i1", "i2", "i3"]
-    },
-    "flavour-schezwan": {
-      "type": "flavour-section",
-      "settings": {
-        "color_scheme": "schezwan",
-        "text_on": "cream",
-        "graphic": "blob",
-        "reverse": false,
-        "anchor_id": "schezwan",
-        "label": "Flavour No. 05",
-        "display_name": "SCHEZ<br>WAN",
-        "tagline": "Loud, red, unreasonable heat. You were warned.",
-        "cta_label": "Shop",
-        "fallback_handle": "schezwan"
-      },
-      "blocks": {
-        "i1": { "type": "ingredient", "settings": { "name": "Cinnamon" } },
-        "i2": { "type": "ingredient", "settings": { "name": "Paprika" } },
-        "i3": { "type": "ingredient", "settings": { "name": "Garlic" } }
-      },
-      "block_order": ["i1", "i2", "i3"]
+      "block_order": ["p1", "p2", "p3", "p4"]
     },
     "why-khakhra": {
       "type": "why-khakhra",
@@ -145,26 +53,76 @@
       },
       "block_order": ["f1", "f2", "f3", "f4"]
     },
-    "ingredients": {
-      "type": "ingredients",
+    "flavour-grid": {
+      "type": "flavour-grid",
       "settings": {
-        "eyebrow": "What's Inside",
-        "headline": "Whole Wheat Flour. Vegetable Oil. Black Salt. Real Spices.",
-        "body": "No palm oil, no preservatives, no long words you need a dictionary for. Just the spice cabinet, baked in."
+        "eyebrow": "Five Flavours",
+        "headline": "Find Your Flavour.",
+        "body": "Not sure where to start? Magic Masala is the crowd-pleaser, Schezwan is for the heat-seekers."
       },
       "blocks": {
-        "s1": { "type": "spice", "settings": { "name": "Red Chilli" } },
-        "s2": { "type": "spice", "settings": { "name": "Aamchur" } },
-        "s3": { "type": "spice", "settings": { "name": "Cumin" } },
-        "s4": { "type": "spice", "settings": { "name": "Turmeric" } },
-        "s5": { "type": "spice", "settings": { "name": "Ginger" } },
-        "s6": { "type": "spice", "settings": { "name": "Methi Leaf" } },
-        "s7": { "type": "spice", "settings": { "name": "Mint Leaf" } },
-        "s8": { "type": "spice", "settings": { "name": "Garlic" } },
-        "s9": { "type": "spice", "settings": { "name": "Paprika" } },
-        "s10": { "type": "spice", "settings": { "name": "Black Salt" } }
+        "fl1": { "type": "flavour", "settings": { "fallback_handle": "magic-masala", "name": "Magic Masala", "tagline": "The one everyone fights over.", "spice_level": "Medium", "accent": "#ff2d78" } },
+        "fl2": { "type": "flavour", "settings": { "fallback_handle": "pani-puri", "name": "Pani Puri", "tagline": "Tangy, sour, gone in one round.", "spice_level": "Mild", "accent": "#ff6a1a" } },
+        "fl3": { "type": "flavour", "settings": { "fallback_handle": "jeera", "name": "Jeera", "tagline": "Toasted cumin, kept honest.", "spice_level": "Mild", "accent": "#ffcc00" } },
+        "fl4": { "type": "flavour", "settings": { "fallback_handle": "methi", "name": "Methi", "tagline": "Earthy fenugreek, entirely addictive.", "spice_level": "Mild", "accent": "#2e9e4f" } },
+        "fl5": { "type": "flavour", "settings": { "fallback_handle": "schezwan", "name": "Schezwan", "tagline": "Loud, red, unreasonable heat.", "spice_level": "Hot", "accent": "#c91224" } }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10"]
+      "block_order": ["fl1", "fl2", "fl3", "fl4", "fl5"]
+    },
+    "process-steps": {
+      "type": "process-steps",
+      "settings": {
+        "eyebrow": "How It's Made",
+        "headline": "Stone-Baked. Never Fried."
+      },
+      "blocks": {
+        "st1": { "type": "step", "settings": { "title": "Whole Wheat, Rolled Thin", "body": "Dough pressed into thin, even coins — no shortcuts on thickness." } },
+        "st2": { "type": "step", "settings": { "title": "Stone-Baked, Not Fried", "body": "Baked until it snaps clean, so there's no oil left behind to soak through the pack." } },
+        "st3": { "type": "step", "settings": { "title": "Real Spice, Added Last", "body": "Each flavour's spice blend is added post-bake so the crunch stays honest." } },
+        "st4": { "type": "step", "settings": { "title": "Sealed Fresh, Small Batch", "body": "Packed in small batches and sealed for freshness — not stockpiled in a warehouse." } }
+      },
+      "block_order": ["st1", "st2", "st3", "st4"]
+    },
+    "nutrition-snapshot": {
+      "type": "nutrition-snapshot",
+      "settings": {
+        "eyebrow": "The Numbers",
+        "headline": "Snack Without The Spiral.",
+        "disclaimer": "Approximate values per serving. Full nutrition facts and ingredients are on every product page."
+      },
+      "blocks": {
+        "n1": { "type": "stat", "settings": { "number": "191.7", "label": "Calories / 40g Serving" } },
+        "n2": { "type": "stat", "settings": { "number": "3.6g", "label": "Protein / Serving" } },
+        "n3": { "type": "stat", "settings": { "number": "0", "label": "Palm Oil" } },
+        "n4": { "type": "stat", "settings": { "number": "100%", "label": "Vegetarian" } }
+      },
+      "block_order": ["n1", "n2", "n3", "n4"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "eyebrow": "From The Crunch-Obsessed",
+        "headline": "WHAT THEY'RE SAYING."
+      }
+    },
+    "faq-preview": {
+      "type": "faq-preview",
+      "settings": {
+        "headline": "Before You Ask."
+      },
+      "blocks": {
+        "q1": { "type": "faq_item", "settings": { "question": "Is it too spicy?", "answer": "<p>Only Schezwan brings real heat. Magic Masala is bold but balanced, and Pani Puri, Jeera and Methi are mild.</p>" } },
+        "q2": { "type": "faq_item", "settings": { "question": "Baked or fried?", "answer": "<p>Baked, not fried. Every coin is stone-baked, not dipped in oil.</p>" } },
+        "q3": { "type": "faq_item", "settings": { "question": "Good for travel?", "answer": "<p>Yes — thin, sturdy discs that hold up in a bag or glovebox without turning to crumbs.</p>" } },
+        "q4": { "type": "faq_item", "settings": { "question": "How long does it stay fresh?", "answer": "<p>Transfer to an airtight container after opening and it'll keep its crunch for weeks.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"]
+    },
+    "instagram-grid": {
+      "type": "instagram-grid",
+      "settings": {
+        "headline": "As Eaten By You."
+      }
     },
     "cta": {
       "type": "cta-section",
@@ -178,14 +136,15 @@
   },
   "order": [
     "hero",
-    "brand-statement",
-    "flavour-magic-masala",
-    "flavour-pani-puri",
-    "flavour-jeera",
-    "flavour-methi",
-    "flavour-schezwan",
+    "trust-badges",
+    "best-sellers",
     "why-khakhra",
-    "ingredients",
+    "flavour-grid",
+    "process-steps",
+    "nutrition-snapshot",
+    "testimonials",
+    "faq-preview",
+    "instagram-grid",
     "cta"
   ]
 }

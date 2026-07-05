@@ -1,0 +1,57 @@
+<section style="background:var(--color-cream);padding:72px 0;">
+  <div class="ihk-container">
+    <div class="ihk-reveal" style="max-width:600px;">
+      <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.6);">{{ section.settings.eyebrow | default: 'The Numbers' }}</span>
+      <h2 class="ihk-display" style="margin-top:12px;color:var(--color-ink);font-size:clamp(26px, 4vw, 44px);">
+        {{ section.settings.headline | default: 'Snack Without The Spiral.' }}
+      </h2>
+    </div>
+
+    <div style="margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:16px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          <div class="ihk-stat-tile ihk-reveal">
+            <p class="ihk-display" style="font-size:34px;color:var(--color-ink);">{{ block.settings.number }}</p>
+            <p style="margin-top:6px;font-size:13px;font-weight:700;letter-spacing:0.02em;color:var(--color-ink-soft);">{{ block.settings.label }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <p style="margin-top:20px;font-size:12px;color:var(--color-ink-soft);opacity:0.75;max-width:480px;">
+      {{ section.settings.disclaimer | default: 'Approximate values per serving. Full nutrition facts and ingredients are on every product page.' }}
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Nutrition snapshot",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Numbers" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Snack Without The Spiral." },
+    { "type": "text", "id": "disclaimer", "label": "Disclaimer" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number" },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nutrition snapshot",
+      "blocks": [
+        { "type": "stat", "settings": { "number": "191.7", "label": "Calories / 40g Serving" } },
+        { "type": "stat", "settings": { "number": "3.6g", "label": "Protein / Serving" } },
+        { "type": "stat", "settings": { "number": "0", "label": "Palm Oil" } },
+        { "type": "stat", "settings": { "number": "100%", "label": "Vegetarian" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

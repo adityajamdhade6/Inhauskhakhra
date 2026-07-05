@@ -148,6 +148,23 @@ function ihkFormatMoney(cents, format) {
   });
 })();
 
+// Sticky Add-to-Cart bar: show once the page's primary CTA scrolls out of view.
+(function () {
+  var bar = document.querySelector("[data-sticky-bar]");
+  var trigger = document.querySelector("[data-sticky-trigger]");
+  if (!bar || !trigger || !("IntersectionObserver" in window)) return;
+
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        bar.classList.toggle("is-visible", !entry.isIntersecting && entry.boundingClientRect.top < 0);
+      });
+    },
+    { threshold: 0 }
+  );
+  observer.observe(trigger);
+})();
+
 // Mobile nav toggle.
 (function () {
   var btn = document.querySelector("[data-nav-toggle]");

@@ -1,0 +1,29 @@
+{%- comment -%}
+  Usage: {% render 'sticky-cta-bar', product: p %}
+  Appears once the page's primary "Add to Cart"/"Shop Now" CTA (marked
+  with [data-sticky-trigger] elsewhere on the page) scrolls out of view.
+{%- endcomment -%}
+{%- assign p = product -%}
+{%- if p != blank -%}
+  <div data-sticky-bar class="ihk-sticky-bar" style="background:var(--color-cream);border-top:1px solid rgba(25,17,8,0.12);box-shadow:0 -8px 24px rgba(25,17,8,0.08);">
+    <div class="ihk-container" style="display:flex;align-items:center;gap:16px;padding-top:12px;padding-bottom:12px;">
+      <img
+        src="{{ p.featured_image | image_url: width: 120 }}"
+        alt="{{ p.title }}"
+        width="44"
+        height="44"
+        style="width:44px;height:44px;object-fit:contain;flex-shrink:0;"
+      >
+      <div style="min-width:0;flex:1;">
+        <p style="font-size:14px;font-weight:800;color:var(--color-ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ p.title }}</p>
+        <p style="font-size:13px;font-weight:700;color:var(--color-ink-soft);">{{ p.price_min | money }}</p>
+      </div>
+      <form data-ihk-cart-form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" style="flex-shrink:0;">
+        <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+        <button type="submit" class="ihk-btn ihk-btn--ink" {% unless p.available %}disabled{% endunless %}>
+          {% if p.available %}Add to Cart{% else %}Sold Out{% endif %}
+        </button>
+      </form>
+    </div>
+  </div>
+{%- endif -%}

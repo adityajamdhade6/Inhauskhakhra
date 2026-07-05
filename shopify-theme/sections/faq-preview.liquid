@@ -1,0 +1,54 @@
+<section style="background:var(--color-cream);padding:72px 0;">
+  <div class="ihk-container" style="max-width:760px;">
+    <div class="ihk-reveal" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;">
+      <h2 class="ihk-display" style="color:var(--color-ink);font-size:clamp(26px, 4vw, 44px);">
+        {{ section.settings.headline | default: 'Before You Ask.' }}
+      </h2>
+      <a href="{{ section.settings.faq_page.url | default: '/pages/faq' }}" style="font-size:14px;font-weight:800;text-decoration:underline;color:var(--color-ink);">
+        All FAQs
+      </a>
+    </div>
+
+    <div class="ihk-accordion ihk-reveal" style="margin-top:32px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <details {% if forloop.first %}open{% endif %}>
+            <summary style="font-size:17px;">{{ block.settings.question }}</summary>
+            <div class="ihk-accordion-body">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ preview",
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Before You Ask." },
+    { "type": "url", "id": "faq_page", "label": "\"All FAQs\" link" }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ preview",
+      "blocks": [
+        { "type": "faq_item", "settings": { "question": "Is it too spicy?", "answer": "<p>Only Schezwan brings real heat. Magic Masala is bold but balanced, and Pani Puri, Jeera and Methi are mild.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Baked or fried?", "answer": "<p>Baked, not fried. Every coin is stone-baked, not dipped in oil.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Good for travel?", "answer": "<p>Yes — thin, sturdy discs that hold up in a bag or glovebox without turning to crumbs.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How long does it stay fresh?", "answer": "<p>Transfer to an airtight container after opening and it'll keep its crunch for weeks.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

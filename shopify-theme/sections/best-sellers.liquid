@@ -1,0 +1,88 @@
+<section id="best-sellers" style="background:var(--color-cream);padding:72px 0;">
+  <div class="ihk-container">
+    <div class="ihk-reveal" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:16px;">
+      <div>
+        <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.6);">{{ section.settings.eyebrow | default: 'Most Reordered' }}</span>
+        <h2 class="ihk-display" style="margin-top:12px;color:var(--color-ink);font-size:clamp(28px, 4vw, 48px);">
+          {{ section.settings.headline | default: 'Start Here.' }}
+        </h2>
+      </div>
+      <a href="{{ routes.all_products_collection_url }}" style="font-size:14px;font-weight:800;text-decoration:underline;color:var(--color-ink);">
+        Shop All Flavours
+      </a>
+    </div>
+
+    <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:24px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product' -%}
+          {%- assign p = block.settings.product -%}
+          {%- if p == blank and block.settings.fallback_handle != blank -%}
+            {%- assign p = all_products[block.settings.fallback_handle] -%}
+          {%- endif -%}
+          {%- if p != blank -%}
+            <div class="ihk-product-card ihk-reveal" style="padding:24px;text-align:center;">
+              {%- if block.settings.tag != blank -%}
+                <span style="display:inline-block;margin-bottom:12px;padding:4px 12px;border-radius:999px;background:var(--color-ink);color:var(--color-cream);font-size:11px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;">
+                  {{ block.settings.tag }}
+                </span>
+              {%- endif -%}
+              <a href="{{ p.url }}" style="display:block;">
+                <img
+                  src="{{ p.featured_image | image_url: width: 500 }}"
+                  alt="{{ p.title }}"
+                  width="220"
+                  loading="lazy"
+                  style="width:100%;max-width:220px;height:auto;margin:0 auto;filter:drop-shadow(0 16px 20px rgba(25,17,8,0.14));"
+                >
+              </a>
+              <h3 class="ihk-display" style="margin-top:16px;color:var(--color-ink);font-size:22px;">
+                <a href="{{ p.url }}">{{ p.title }}</a>
+              </h3>
+              <p style="margin-top:6px;font-size:15px;font-weight:700;color:var(--color-ink);">
+                {{ p.price_min | money }}
+              </p>
+              <form data-ihk-cart-form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" style="margin-top:16px;">
+                <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+                <button type="submit" class="ihk-btn ihk-btn--ink" style="width:100%;" {% unless p.available %}disabled{% endunless %}>
+                  {% if p.available %}Add to Cart{% else %}Sold Out{% endif %}
+                </button>
+              </form>
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best sellers",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Most Reordered" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Start Here." }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "fallback_handle", "label": "Product handle (used only if Product above is empty)" },
+        { "type": "text", "id": "tag", "label": "Tag (optional)", "info": "e.g. 'Best Seller', 'New'" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Best sellers",
+      "blocks": [
+        { "type": "product", "settings": { "fallback_handle": "magic-masala", "tag": "Best Seller" } },
+        { "type": "product", "settings": { "fallback_handle": "schezwan", "tag": "Spiciest" } },
+        { "type": "product", "settings": { "fallback_handle": "jeera", "tag": "" } },
+        { "type": "product", "settings": { "fallback_handle": "methi", "tag": "" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

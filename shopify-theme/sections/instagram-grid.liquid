@@ -1,0 +1,63 @@
+{%- comment -%}
+  Empty by default — add real Instagram/UGC posts as blocks once you have them.
+  Renders nothing until at least one block is added.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <section style="background:var(--color-cream);padding:72px 0;">
+    <div class="ihk-container">
+      <div class="ihk-reveal" style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;">
+        <h2 class="ihk-display" style="color:var(--color-ink);font-size:clamp(26px, 4vw, 44px);">
+          {{ section.settings.headline | default: 'As Eaten By You.' }}
+        </h2>
+        {%- if settings.instagram_url != blank -%}
+          <a href="{{ settings.instagram_url }}" target="_blank" rel="noopener" style="font-size:14px;font-weight:800;text-decoration:underline;color:var(--color-ink);">
+            Follow Along
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'post' -%}
+            <a
+              href="{{ block.settings.link | default: settings.instagram_url }}"
+              target="_blank"
+              rel="noopener"
+              class="ihk-reveal"
+              style="display:block;aspect-ratio:1;border-radius:16px;overflow:hidden;background:var(--color-cream-dim);"
+              {{ block.shopify_attributes }}
+            >
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 500 }}"
+                  alt="{{ block.settings.image.alt | default: 'Customer photo' }}"
+                  loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;"
+                >
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Instagram grid",
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Headline", "default": "As Eaten By You." }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Post",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "link", "label": "Link (optional)" }
+      ]
+    }
+  ]
+}
+{% endschema %}

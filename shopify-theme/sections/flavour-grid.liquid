@@ -1,0 +1,103 @@
+<section id="flavours" style="background:var(--color-cream);padding:80px 0;">
+  <div class="ihk-container">
+    <div class="ihk-reveal" style="max-width:640px;">
+      <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.6);">{{ section.settings.eyebrow | default: 'Five Flavours' }}</span>
+      <h2 class="ihk-display" style="margin-top:12px;color:var(--color-ink);font-size:clamp(28px, 4.5vw, 52px);">
+        {{ section.settings.headline | default: 'Find Your Flavour.' }}
+      </h2>
+      <p style="margin-top:16px;font-size:17px;font-weight:500;color:var(--color-ink-soft);">
+        {{ section.settings.body | default: "Not sure where to start? Magic Masala is the crowd-pleaser, Schezwan is for the heat-seekers." }}
+      </p>
+    </div>
+
+    <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:20px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'flavour' -%}
+          {%- assign p = block.settings.product -%}
+          {%- if p == blank and block.settings.fallback_handle != blank -%}
+            {%- assign p = all_products[block.settings.fallback_handle] -%}
+          {%- endif -%}
+          <a
+            href="{{ p.url | default: routes.all_products_collection_url }}"
+            class="ihk-product-card ihk-reveal"
+            style="display:block;padding:20px;text-decoration:none;"
+          >
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="width:12px;height:12px;border-radius:999px;background:{{ block.settings.accent | default: 'var(--color-masala)' }};"></span>
+              <span style="font-size:12px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--color-ink-soft);">
+                {{ block.settings.spice_level | default: 'Mild' }}
+              </span>
+            </div>
+            <div style="margin-top:12px;display:flex;justify-content:center;">
+              {%- if p != blank -%}
+                <img
+                  src="{{ p.featured_image | image_url: width: 400 }}"
+                  alt="{{ p.title }}"
+                  width="150"
+                  loading="lazy"
+                  style="width:100%;max-width:150px;height:auto;filter:drop-shadow(0 12px 16px rgba(25,17,8,0.14));"
+                >
+              {%- endif -%}
+            </div>
+            <h3 class="ihk-display" style="margin-top:16px;color:var(--color-ink);font-size:20px;">
+              {{ block.settings.name | default: p.title }}
+            </h3>
+            <p style="margin-top:6px;font-size:14px;font-weight:500;color:var(--color-ink-soft);">
+              {{ block.settings.tagline }}
+            </p>
+            <span style="margin-top:14px;display:inline-block;font-size:13px;font-weight:800;text-decoration:underline;color:var(--color-ink);">
+              Shop {{ block.settings.name | default: p.title }}
+            </span>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Flavour grid",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Five Flavours" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Find Your Flavour." },
+    { "type": "textarea", "id": "body", "label": "Body" }
+  ],
+  "blocks": [
+    {
+      "type": "flavour",
+      "name": "Flavour",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "fallback_handle", "label": "Product handle (used only if Product above is empty)" },
+        { "type": "text", "id": "name", "label": "Display name (overrides product title)" },
+        { "type": "text", "id": "tagline", "label": "One-line tagline" },
+        {
+          "type": "select",
+          "id": "spice_level",
+          "label": "Spice level",
+          "options": [
+            { "value": "Mild", "label": "Mild" },
+            { "value": "Medium", "label": "Medium" },
+            { "value": "Hot", "label": "Hot" }
+          ],
+          "default": "Mild"
+        },
+        { "type": "color", "id": "accent", "label": "Accent dot colour", "default": "#ff2d78" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flavour grid",
+      "blocks": [
+        { "type": "flavour", "settings": { "fallback_handle": "magic-masala", "name": "Magic Masala", "tagline": "The one everyone fights over.", "spice_level": "Medium", "accent": "#ff2d78" } },
+        { "type": "flavour", "settings": { "fallback_handle": "pani-puri", "name": "Pani Puri", "tagline": "Tangy, sour, gone in one round.", "spice_level": "Mild", "accent": "#ff6a1a" } },
+        { "type": "flavour", "settings": { "fallback_handle": "jeera", "name": "Jeera", "tagline": "Toasted cumin, kept honest.", "spice_level": "Mild", "accent": "#ffcc00" } },
+        { "type": "flavour", "settings": { "fallback_handle": "methi", "name": "Methi", "tagline": "Earthy fenugreek, entirely addictive.", "spice_level": "Mild", "accent": "#2e9e4f" } },
+        { "type": "flavour", "settings": { "fallback_handle": "schezwan", "name": "Schezwan", "tagline": "Loud, red, unreasonable heat.", "spice_level": "Hot", "accent": "#c91224" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
