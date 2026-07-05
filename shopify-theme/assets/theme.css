@@ -180,3 +180,37 @@ a {
   background: var(--color-ink);
   color: var(--color-cream);
 }
+
+.ihk-accordion {
+  border-top: 2px solid rgba(25, 17, 8, 0.15);
+}
+.ihk-accordion > details {
+  padding: 20px 0;
+  border-bottom: 2px solid rgba(25, 17, 8, 0.15);
+}
+.ihk-accordion summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--color-ink);
+  list-style: none;
+}
+.ihk-accordion summary::-webkit-details-marker {
+  display: none;
+}
+.ihk-accordion summary::before {
+  content: "+";
+  display: inline-block;
+  width: 20px;
+  font-weight: 700;
+}
+.ihk-accordion details[open] summary::before {
+  content: "\2013";
+}
+.ihk-accordion .ihk-accordion-body {
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  line-height: 1.6;
+}

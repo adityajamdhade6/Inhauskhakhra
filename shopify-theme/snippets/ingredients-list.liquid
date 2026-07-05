@@ -1,0 +1,23 @@
+{%- comment -%}
+  Renders ingredients + allergen info. Uses product.metafields.custom.ingredients_html
+  if set (Admin > Product > Metafields > add "custom.ingredients_html" as a Rich
+  text / HTML field for per-flavour precision); otherwise falls back to the
+  shared statement below.
+{%- endcomment -%}
+{%- assign p = product -%}
+
+<div>
+  {%- if p.metafields.custom.ingredients_html != blank -%}
+    <div class="ihk-accordion-body" style="margin-top:0;">{{ p.metafields.custom.ingredients_html }}</div>
+  {%- else -%}
+    <p class="ihk-accordion-body" style="margin-top:0;">
+      Whole Wheat Flour, Edible Vegetable Oil, Iodised Salt, Black Salt, Spices &amp; Condiments (varies by flavour), Citric Acid (acidity regulator), Silicon Dioxide (anti-caking agent).
+    </p>
+    <p style="margin-top:12px;font-size:13px;font-weight:700;color:var(--color-ink);">
+      Allergen Information
+    </p>
+    <p class="ihk-accordion-body" style="margin-top:4px;">
+      Contains Wheat. May contain traces of Milk, Soy and Tree Nuts.
+    </p>
+  {%- endif -%}
+</div>

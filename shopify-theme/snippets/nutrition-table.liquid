@@ -6,9 +6,8 @@
 {%- endcomment -%}
 {%- assign p = product -%}
 
-<div style="margin-top:16px;">
-  <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-ink);margin-bottom:4px;">Nutrition Facts</p>
-  <p style="font-size:12px;color:var(--color-ink-soft);margin-bottom:12px;">Approximate values</p>
+<div>
+  <p style="font-size:12px;color:var(--color-ink-soft);margin-bottom:12px;">Approximate values, per the standard Inhaus Coin Khakhra label</p>
 
   {%- if p.metafields.custom.nutrition_html != blank -%}
     <div style="font-size:14px;color:var(--color-ink-soft);">{{ p.metafields.custom.nutrition_html }}</div>

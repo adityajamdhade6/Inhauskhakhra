@@ -35,12 +35,6 @@
         {{ p.selected_or_first_available_variant.price | money }}
       </p>
 
-      {%- if p.description != blank -%}
-        <div style="margin-top:24px;max-width:520px;font-size:16px;font-weight:500;color:var(--color-ink-soft);line-height:1.6;">
-          {{ p.description }}
-        </div>
-      {%- endif -%}
-
       <form data-ihk-cart-form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" style="margin-top:32px;" data-product-form>
         <input type="hidden" name="id" data-product-variant-id value="{{ p.selected_or_first_available_variant.id }}">
 
@@ -77,10 +71,71 @@
         </div>
       </form>
 
-      {% render 'nutrition-table', product: p %}
+      <div class="ihk-accordion" style="margin-top:40px;">
+        {%- if p.description != blank -%}
+          <details open>
+            <summary style="font-size:16px;">Description</summary>
+            <div class="ihk-accordion-body">{{ p.description }}</div>
+          </details>
+        {%- endif -%}
+        <details {% if p.description == blank %}open{% endif %}>
+          <summary style="font-size:16px;">Nutrition Facts</summary>
+          <div class="ihk-accordion-body">{% render 'nutrition-table', product: p %}</div>
+        </details>
+        <details>
+          <summary style="font-size:16px;">Ingredients</summary>
+          <div class="ihk-accordion-body">{% render 'ingredients-list', product: p %}</div>
+        </details>
+      </div>
     </div>
   </div>
 </section>
+
+{%- if section.settings.show_comparison -%}
+  <section style="background:var(--color-ink);padding:80px 0;">
+    <div class="ihk-container">
+      <h2 class="ihk-display" style="color:var(--color-cream);font-size:clamp(28px, 4vw, 48px);">
+        {{ section.settings.comparison_headline | default: 'BAKED, NOT FRIED. HERE&rsquo;S THE DIFFERENCE.' }}
+      </h2>
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:32px;">
+        <div style="padding:32px;border:2px solid rgba(251,241,224,0.25);border-radius:16px;">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-schezwan-light);">The Usual Way</p>
+          <p style="margin-top:16px;font-size:16px;font-weight:500;color:rgba(251,241,224,0.75);line-height:1.6;">
+            {{ section.settings.comparison_fried | default: 'Deep-fried in an oil bath, then left to cool and re-absorb everything it just sat in. Heavier, greasier, and it shows within the first bite.' }}
+          </p>
+        </div>
+        <div style="padding:32px;border:2px solid var(--color-methi-light);border-radius:16px;background:rgba(251,241,224,0.04);">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-methi-light);">The Inhaus Way</p>
+          <p style="margin-top:16px;font-size:16px;font-weight:500;color:var(--color-cream);line-height:1.6;">
+            {{ section.settings.comparison_baked | default: 'Stone-baked in small batches until it snaps clean. No oil bath, no palm oil, no grease left behind &mdash; just the crunch and the spice.' }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- if section.settings.show_recommendations -%}
+  {%- recommendations product: p, limit: 4 -%}
+    {%- if recommendations.performed and recommendations.products.size > 0 -%}
+      <section class="ihk-container" style="padding:80px 0;">
+        <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.7);">More To Try</span>
+        <h2 class="ihk-display" style="margin-top:16px;color:var(--color-ink);font-size:clamp(28px, 4vw, 48px);">
+          {{ section.settings.recommendations_headline | default: 'EXPLORE OTHER FLAVOURS.' }}
+        </h2>
+        <div style="margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:32px;">
+          {%- for rec in recommendations.products -%}
+            <a href="{{ rec.url }}" style="text-decoration:none;color:inherit;text-align:center;">
+              <img src="{{ rec.featured_image | image_url: width: 400 }}" alt="{{ rec.featured_image.alt | default: rec.title }}" style="width:100%;max-width:180px;margin:0 auto;filter:drop-shadow(6px 10px 14px rgba(25,17,8,0.25));">
+              <p class="ihk-display" style="margin-top:16px;color:var(--color-ink);font-size:20px;">{{ rec.title }}</p>
+              <p style="margin-top:4px;font-size:14px;font-weight:700;color:var(--color-ink-soft);">{{ rec.price | money }}</p>
+            </a>
+          {%- endfor -%}
+        </div>
+      </section>
+    {%- endif -%}
+  {%- endrecommendations -%}
+{%- endif -%}
 
 <style>
   @media (min-width: 900px) {
@@ -98,6 +153,13 @@
 {% schema %}
 {
   "name": "Product",
-  "settings": []
+  "settings": [
+    { "type": "checkbox", "id": "show_comparison", "label": "Show \"Baked vs Fried\" comparison", "default": true },
+    { "type": "text", "id": "comparison_headline", "label": "Comparison headline", "default": "BAKED, NOT FRIED. HERE'S THE DIFFERENCE." },
+    { "type": "textarea", "id": "comparison_fried", "label": "\"The Usual Way\" copy" },
+    { "type": "textarea", "id": "comparison_baked", "label": "\"The Inhaus Way\" copy" },
+    { "type": "checkbox", "id": "show_recommendations", "label": "Show product recommendations", "default": true },
+    { "type": "text", "id": "recommendations_headline", "label": "Recommendations headline", "default": "EXPLORE OTHER FLAVOURS." }
+  ]
 }
 {% endschema %}
