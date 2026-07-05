@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-about",
+      "settings": {
+        "eyebrow": "Our Story",
+        "headline": "CRUNCH<br>DIFFERENT.",
+        "body": "<p>We started Inhaus Khakhra with one complaint: why does &ldquo;healthy&rdquo; always have to taste like punishment?</p><p>Khakhra&rsquo;s been a staple in Indian kitchens forever — thin, roasted, unapologetically crunchy. We didn&rsquo;t reinvent it. We just refused to make it boring.</p><p>Every coin is stone-baked, not fried, in small batches, then loaded with flavours that actually taste like something — from the sour hit of Pani Puri to the loud heat of Schezwan. No palm oil. No shortcuts. No pretending a snack has to be dull to be good for you.</p><p>Small. Round. Addictive. That&rsquo;s the whole pitch.</p>",
+        "show_stats": false
+      }
+    }
+  },
+  "order": ["main"]
+}

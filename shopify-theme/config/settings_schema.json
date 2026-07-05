@@ -6,5 +6,52 @@
     "theme_author": "Inhaus Khakhra",
     "theme_documentation_url": "",
     "theme_support_url": ""
+  },
+  {
+    "name": "Brand & contact",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contact details"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Public contact email",
+        "default": "hello@inhauskhakhra.com",
+        "info": "Shown on the Contact page and footer. Note: the contact form itself always sends to your Shopify customer email (Settings > Notifications), regardless of what's set here."
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Public phone number",
+        "info": "Leave blank to hide."
+      },
+      {
+        "type": "header",
+        "content": "Social links"
+      },
+      { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
+      { "type": "url", "id": "facebook_url", "label": "Facebook URL" },
+      { "type": "url", "id": "tiktok_url", "label": "TikTok URL" },
+      { "type": "url", "id": "x_url", "label": "X (Twitter) URL" },
+      { "type": "url", "id": "youtube_url", "label": "YouTube URL" },
+      {
+        "type": "header",
+        "content": "Regulatory (India packaged food)"
+      },
+      {
+        "type": "text",
+        "id": "fssai_number",
+        "label": "FSSAI License Number",
+        "info": "Required for Indian packaged food e-commerce. Shown in the footer."
+      },
+      {
+        "type": "textarea",
+        "id": "manufacturer_details",
+        "label": "Manufactured/Packed by (name & address)",
+        "info": "Required for Indian packaged food e-commerce. Shown in the footer."
+      }
+    ]
   }
 ]

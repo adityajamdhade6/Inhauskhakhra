@@ -1,0 +1,48 @@
+<section style="position:relative;overflow:hidden;background:var(--color-cream);padding:160px 0 80px;">
+  <div class="ihk-container">
+    <span class="ihk-eyebrow" style="color:rgba(25,17,8,0.7);">{{ section.settings.eyebrow | default: 'Our Story' }}</span>
+    <h1 class="ihk-display" style="margin-top:20px;color:var(--color-ink);font-size:clamp(40px, 8vw, 110px);">
+      {{ section.settings.headline | default: 'CRUNCH<br>DIFFERENT.' }}
+    </h1>
+    <div style="margin-top:32px;max-width:620px;font-size:18px;font-weight:500;color:var(--color-ink-soft);line-height:1.7;">
+      {{ section.settings.body }}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.show_stats -%}
+  <section style="background:var(--color-ink);padding:80px 0;">
+    <div class="ihk-container" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:40px;">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          <div>
+            <p class="ihk-display" style="color:var(--color-cream);font-size:48px;">{{ block.settings.number }}</p>
+            <p style="margin-top:8px;color:rgba(251,241,224,0.7);font-size:14px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">{{ block.settings.label }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "CRUNCH<br>DIFFERENT." },
+    { "type": "richtext", "id": "body", "label": "Body" },
+    { "type": "checkbox", "id": "show_stats", "label": "Show stat row", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number" },
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ]
+}
+{% endschema %}

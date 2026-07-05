@@ -24,6 +24,9 @@
 {%- endif -%}
 
 {%- assign p = section.settings.product -%}
+{%- if p == blank and section.settings.fallback_handle != blank -%}
+  {%- assign p = all_products[section.settings.fallback_handle] -%}
+{%- endif -%}
 
 <section id="{{ section.settings.anchor_id | default: section.id }}" style="position:relative;overflow:hidden;background:{{ bg }};min-height:100vh;display:flex;align-items:center;padding:80px 0;">
   {% render 'background-graphic', variant: section.settings.graphic, color: text_color, opacity: 0.12 %}
@@ -53,7 +56,9 @@
               </button>
             </form>
           {%- else -%}
-            <a href="#" class="ihk-btn {{ btn_class }}">{{ section.settings.cta_label | default: 'Shop' }}</a>
+            <a href="{{ section.settings.fallback_collection.url | default: routes.all_products_collection_url }}" class="ihk-btn {{ btn_class }}">
+              {{ section.settings.cta_label | default: 'Shop' }}
+            </a>
           {%- endif -%}
         </div>
       </div>
@@ -146,6 +151,13 @@
     { "type": "text", "id": "display_name", "label": "Display name (use <br> for line break)", "default": "MAGIC<br>MASALA" },
     { "type": "textarea", "id": "tagline", "label": "Tagline" },
     { "type": "product", "id": "product", "label": "Product" },
+    {
+      "type": "text",
+      "id": "fallback_handle",
+      "label": "Product handle (used only if Product above is empty)",
+      "info": "e.g. 'pani-puri' — auto-links to that product by handle once it exists in your catalogue, no need to touch this section again."
+    },
+    { "type": "collection", "id": "fallback_collection", "label": "Fallback link if no product is set/found", "info": "Defaults to your All Products collection." },
     { "type": "text", "id": "cta_label", "label": "Button label prefix", "default": "Shop" }
   ],
   "blocks": [

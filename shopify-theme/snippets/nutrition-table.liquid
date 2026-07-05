@@ -1,0 +1,44 @@
+{%- comment -%}
+  Renders nutrition facts. Uses product.metafields.custom.nutrition_html if set
+  (Admin > Product > Metafields > add "custom.nutrition_html" as a Rich text /
+  HTML field for per-flavour precision); otherwise falls back to the shared
+  values below (from the standard Inhaus Coin Khakhra label).
+{%- endcomment -%}
+{%- assign p = product -%}
+
+<div style="margin-top:16px;">
+  <p style="font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-ink);margin-bottom:4px;">Nutrition Facts</p>
+  <p style="font-size:12px;color:var(--color-ink-soft);margin-bottom:12px;">Approximate values</p>
+
+  {%- if p.metafields.custom.nutrition_html != blank -%}
+    <div style="font-size:14px;color:var(--color-ink-soft);">{{ p.metafields.custom.nutrition_html }}</div>
+  {%- else -%}
+    <div style="overflow-x:auto;">
+      <table style="width:100%;min-width:420px;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--color-ink);color:var(--color-cream);">
+            <th style="text-align:left;padding:8px 12px;font-size:11px;text-transform:uppercase;">Nutrient</th>
+            <th style="text-align:left;padding:8px 12px;font-size:11px;text-transform:uppercase;">Per 100g</th>
+            <th style="text-align:left;padding:8px 12px;font-size:11px;text-transform:uppercase;">Per Serving (40g)</th>
+            <th style="text-align:left;padding:8px 12px;font-size:11px;text-transform:uppercase;">%RDA*</th>
+          </tr>
+        </thead>
+        <tbody style="color:var(--color-ink-soft);">
+          {%- assign rows = 'Energy|479.1 kcal|191.7 kcal|9.6,Carbohydrates|67.4 g|27.0 g|—,Total Sugars|6.8 g|2.7 g|—,Added Sugars|0 g|0 g|—,Dietary Fibre|10.7 g|4.3 g|—,Protein|9.0 g|3.6 g|—,Total Fat|19.3 g|7.7 g|11.5,Saturated Fat|4.6 g|1.8 g|8.4,Trans Fat|0 g|0 g|—,Cholesterol|0 mg|0 mg|—,Sodium|800 mg|320 mg|16.0' | split: ',' -%}
+          {%- for row in rows -%}
+            {%- assign cells = row | split: '|' -%}
+            <tr style="border-bottom:1px solid rgba(25,17,8,0.1);">
+              <th style="text-align:left;padding:8px 12px;font-weight:700;color:var(--color-ink);white-space:nowrap;">{{ cells[0] }}</th>
+              <td style="padding:8px 12px;">{{ cells[1] }}</td>
+              <td style="padding:8px 12px;">{{ cells[2] }}</td>
+              <td style="padding:8px 12px;">{{ cells[3] }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:8px;font-size:11px;color:var(--color-ink-soft);opacity:0.8;max-width:480px;">
+      *% Recommended Dietary Allowance based on a 2000 kcal diet. Values are approximate and may vary slightly by batch and flavour.
+    </p>
+  {%- endif -%}
+</div>

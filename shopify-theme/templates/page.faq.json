@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-faq",
+      "settings": {
+        "heading": "FAQ."
+      },
+      "blocks": {
+        "q1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Inhaus Coin Khakhra baked or fried?",
+            "answer": "<p>Baked, not fried. Every coin is roasted, not dipped in oil — so you get the crunch without the grease.</p>"
+          }
+        },
+        "q2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it vegetarian?",
+            "answer": "<p>Yes, 100% vegetarian.</p>"
+          }
+        },
+        "q3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How spicy is Schezwan / Magic Masala?",
+            "answer": "<p>Schezwan is our loudest, most heat-forward flavour. Magic Masala is bold but more balanced. Pani Puri, Jeera, and Methi are milder and built more around tang and roasted spice than raw heat.</p>"
+          }
+        },
+        "q4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How should I store it after opening?",
+            "answer": "<p>Transfer to an airtight container and keep it in a cool, dry place. Keeps the crunch honest for longer.</p>"
+          }
+        },
+        "q5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders are typically processed within 1–2 business days and delivered within 3–7 business days across India, depending on location. See our Shipping Policy for full details.</p>"
+          }
+        },
+        "q6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return an opened pack?",
+            "answer": "<p>Since khakhra is a fresh, perishable food product, we can't accept returns of opened packs. If your order arrives damaged or incorrect, contact us within 48 hours of delivery and we'll sort out a replacement or refund. See our Refund Policy for details.</p>"
+          }
+        },
+        "q7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you do bulk or gifting orders?",
+            "answer": "<p>We do — reach out via our Contact page with quantity and flavour split and we'll get back to you with pricing.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"]
+    }
+  },
+  "order": ["main"]
+}

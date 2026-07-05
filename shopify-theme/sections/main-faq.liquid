@@ -1,0 +1,54 @@
+<section style="background:var(--color-cream);padding:160px 0 80px;min-height:100vh;">
+  <div class="ihk-container" style="max-width:760px;">
+    <h1 class="ihk-display" style="color:var(--color-ink);font-size:clamp(36px, 6vw, 72px);">
+      {{ section.settings.heading | default: 'FAQ.' }}
+    </h1>
+
+    <div style="margin-top:48px;border-top:2px solid rgba(25,17,8,0.15);">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq_item' -%}
+          <details style="padding:24px 0;border-bottom:2px solid rgba(25,17,8,0.15);">
+            <summary style="cursor:pointer;font-family:var(--font-display);font-size:20px;color:var(--color-ink);list-style:none;">
+              {{ block.settings.question }}
+            </summary>
+            <div style="margin-top:12px;font-size:16px;font-weight:500;color:var(--color-ink-soft);line-height:1.6;">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker { display: none; }
+  summary::before {
+    content: "+";
+    display: inline-block;
+    width: 20px;
+    font-weight: 700;
+  }
+  details[open] summary::before {
+    content: "–";
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "FAQ." }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ]
+}
+{% endschema %}

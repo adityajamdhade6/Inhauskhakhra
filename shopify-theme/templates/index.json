@@ -10,11 +10,11 @@
         "cta_link": "#flavours"
       },
       "blocks": {
-        "pack-1": { "type": "pack", "settings": { "rotate": -10, "width": 132 } },
-        "pack-2": { "type": "pack", "settings": { "rotate": -4, "width": 132 } },
-        "pack-3": { "type": "pack", "settings": { "rotate": 2, "width": 168 } },
-        "pack-4": { "type": "pack", "settings": { "rotate": 8, "width": 132 } },
-        "pack-5": { "type": "pack", "settings": { "rotate": 14, "width": 132 } }
+        "pack-1": { "type": "pack", "settings": { "rotate": -10, "width": 132, "fallback_handle": "magic-masala" } },
+        "pack-2": { "type": "pack", "settings": { "rotate": -4, "width": 132, "fallback_handle": "pani-puri" } },
+        "pack-3": { "type": "pack", "settings": { "rotate": 2, "width": 168, "fallback_handle": "jeera" } },
+        "pack-4": { "type": "pack", "settings": { "rotate": 8, "width": 132, "fallback_handle": "methi" } },
+        "pack-5": { "type": "pack", "settings": { "rotate": 14, "width": 132, "fallback_handle": "schezwan" } }
       },
       "block_order": ["pack-1", "pack-2", "pack-3", "pack-4", "pack-5"]
     },
@@ -37,7 +37,8 @@
         "label": "Flavour No. 01",
         "display_name": "MAGIC<br>MASALA",
         "tagline": "The one everyone fights over. Bold masala, zero apology.",
-        "cta_label": "Shop"
+        "cta_label": "Shop",
+        "fallback_handle": "magic-masala"
       },
       "blocks": {
         "i1": { "type": "ingredient", "settings": { "name": "Tomato Powder" } },
@@ -57,7 +58,8 @@
         "label": "Flavour No. 02",
         "display_name": "PANI<br>PURI",
         "tagline": "Tangy, golgappa-sour, gone in one round.",
-        "cta_label": "Shop"
+        "cta_label": "Shop",
+        "fallback_handle": "pani-puri"
       },
       "blocks": {
         "i1": { "type": "ingredient", "settings": { "name": "Mint Leaf" } },
@@ -77,7 +79,8 @@
         "label": "Flavour No. 03",
         "display_name": "JEERA",
         "tagline": "Toasted cumin, kept honest. Crunch that means it.",
-        "cta_label": "Shop"
+        "cta_label": "Shop",
+        "fallback_handle": "jeera"
       },
       "blocks": {
         "i1": { "type": "ingredient", "settings": { "name": "Cumin Seed" } },
@@ -97,7 +100,8 @@
         "label": "Flavour No. 04",
         "display_name": "METHI",
         "tagline": "Earthy fenugreek. Slightly bitter, entirely addictive.",
-        "cta_label": "Shop"
+        "cta_label": "Shop",
+        "fallback_handle": "methi"
       },
       "blocks": {
         "i1": { "type": "ingredient", "settings": { "name": "Fenugreek Leaf" } },
@@ -117,7 +121,8 @@
         "label": "Flavour No. 05",
         "display_name": "SCHEZ<br>WAN",
         "tagline": "Loud, red, unreasonable heat. You were warned.",
-        "cta_label": "Shop"
+        "cta_label": "Shop",
+        "fallback_handle": "schezwan"
       },
       "blocks": {
         "i1": { "type": "ingredient", "settings": { "name": "Cinnamon" } },

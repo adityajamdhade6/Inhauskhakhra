@@ -13,7 +13,7 @@
         <p style="max-width:380px;font-size:18px;font-weight:500;color:rgba(251,241,224,0.9);margin:0;">
           {{ section.settings.subhead | default: 'Five bold flavours of small, round, baked-not-fried khakhra. Made for the crunch-obsessed.' }}
         </p>
-        <a href="{{ section.settings.cta_link | default: '#flavours' }}" class="ihk-btn ihk-btn--cream">
+        <a href="{{ section.settings.bundle_product.url | default: section.settings.cta_link | default: routes.all_products_collection_url }}" class="ihk-btn ihk-btn--cream">
           {{ section.settings.cta_label | default: 'Shop The Pack' }}
         </a>
       </div>
@@ -23,15 +23,20 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'pack' -%}
           {%- assign p = block.settings.product -%}
+          {%- if p == blank and block.settings.fallback_handle != blank -%}
+            {%- assign p = all_products[block.settings.fallback_handle] -%}
+          {%- endif -%}
           <div class="{% if forloop.index > 1 %}ihk-hide-mobile{% endif %}" style="transform:rotate({{ block.settings.rotate }}deg);">
             {%- if p != blank -%}
-              <img
-                src="{{ p.featured_image | image_url: width: 400 }}"
-                alt="{{ p.title }}"
-                width="{{ block.settings.width }}"
-                loading="lazy"
-                style="width:{{ block.settings.width }}px;height:auto;filter:drop-shadow(10px 14px 18px rgba(25,17,8,0.35));"
-              >
+              <a href="{{ p.url }}" aria-label="Shop {{ p.title }}">
+                <img
+                  src="{{ p.featured_image | image_url: width: 400 }}"
+                  alt="{{ p.title }}"
+                  width="{{ block.settings.width }}"
+                  loading="lazy"
+                  style="width:{{ block.settings.width }}px;height:auto;filter:drop-shadow(10px 14px 18px rgba(25,17,8,0.35));"
+                >
+              </a>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -52,7 +57,8 @@
     { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "CRUNCH<br>DIFFERENT." },
     { "type": "textarea", "id": "subhead", "label": "Subheading" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop The Pack" },
-    { "type": "url", "id": "cta_link", "label": "Button link" }
+    { "type": "product", "id": "bundle_product", "label": "Bundle/variety-pack product (preferred if you have one)" },
+    { "type": "url", "id": "cta_link", "label": "Button link (used if no bundle product is set)" }
   ],
   "blocks": [
     {
@@ -60,6 +66,12 @@
       "name": "Product pack",
       "settings": [
         { "type": "product", "id": "product", "label": "Product" },
+        {
+          "type": "text",
+          "id": "fallback_handle",
+          "label": "Product handle (used only if Product above is empty)",
+          "info": "e.g. 'jeera' — auto-links once a product with this handle exists."
+        },
         { "type": "range", "id": "width", "label": "Width (px)", "min": 100, "max": 220, "step": 4, "default": 140 },
         { "type": "range", "id": "rotate", "label": "Rotation (deg)", "min": -20, "max": 20, "step": 1, "default": -6 }
       ]

@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-contact",
+      "settings": {
+        "heading": "GET IN TOUCH.",
+        "subheading": "Questions about an order, a flavour, or a bulk request? Send it over — we read everything."
+      }
+    }
+  },
+  "order": ["main"]
+}

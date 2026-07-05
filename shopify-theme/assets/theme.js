@@ -23,6 +23,109 @@
   });
 })();
 
+// Product image gallery: click a thumbnail to swap the main image.
+(function () {
+  var mainImg = document.querySelector("[data-product-main-image]");
+  var thumbs = document.querySelectorAll("[data-product-thumb]");
+  if (!mainImg || thumbs.length === 0) return;
+  thumbs.forEach(function (thumb) {
+    thumb.addEventListener("click", function () {
+      var src = thumb.getAttribute("data-full-src");
+      if (src) mainImg.setAttribute("src", src);
+      thumbs.forEach(function (t) {
+        t.style.borderColor = "var(--color-ink)";
+      });
+      thumb.style.borderColor = "var(--color-masala)";
+    });
+  });
+})();
+
+// Money formatting (mirrors Shopify's standard money_format tokens).
+function ihkFormatMoney(cents, format) {
+  format = format || window.themeMoneyFormat || "${{amount}}";
+  var value = (cents / 100).toFixed(2);
+  var parts = value.split(".");
+  var withThousands = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  var amount = withThousands + "." + parts[1];
+  var amountNoDecimals = withThousands;
+  return format
+    .replace(/\{\{\s*amount\s*\}\}/, amount)
+    .replace(/\{\{\s*amount_no_decimals\s*\}\}/, amountNoDecimals);
+}
+
+// Product variant/option selector: pill buttons -> resolve matching variant.
+(function () {
+  var forms = document.querySelectorAll("[data-product-form]");
+  forms.forEach(function (form) {
+    var jsonEl = form.querySelector("[data-product-variants-json]");
+    if (!jsonEl) return;
+    var variants;
+    try {
+      variants = JSON.parse(jsonEl.textContent);
+    } catch (e) {
+      return;
+    }
+
+    var selected = {};
+    form.querySelectorAll("[data-option-index]").forEach(function (group) {
+      var idx = group.getAttribute("data-option-index");
+      var firstBtn = group.querySelector("[data-option-value]");
+      if (firstBtn) selected[idx] = firstBtn.getAttribute("data-value");
+    });
+
+    function findVariant() {
+      return variants.find(function (v) {
+        return (
+          (selected.option1 === undefined || v.option1 === selected.option1) &&
+          (selected.option2 === undefined || v.option2 === selected.option2) &&
+          (selected.option3 === undefined || v.option3 === selected.option3)
+        );
+      });
+    }
+
+    function updateUI() {
+      var variant = findVariant();
+      var input = form.querySelector("[data-product-variant-id]");
+      var submit = form.querySelector("[data-product-submit]");
+      var priceEl = form.closest("section") && form.closest("section").querySelector("[data-product-price]");
+      var mainImg = document.querySelector("[data-product-main-image]");
+
+      if (!variant) {
+        if (submit) {
+          submit.disabled = true;
+          submit.textContent = "Unavailable";
+        }
+        return;
+      }
+      if (input) input.value = variant.id;
+      if (priceEl) priceEl.textContent = ihkFormatMoney(variant.price);
+      if (submit) {
+        submit.disabled = !variant.available;
+        submit.textContent = variant.available ? "Add to Cart" : "Sold Out";
+      }
+      if (mainImg && variant.featured_image) {
+        mainImg.setAttribute("src", variant.featured_image.src);
+      }
+    }
+
+    form.querySelectorAll("[data-option-value]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var idx = btn.getAttribute("data-option-index");
+        selected[idx] = btn.getAttribute("data-value");
+
+        form.querySelectorAll('[data-option-index="' + idx + '"][data-option-value]').forEach(function (b) {
+          var isSel = b === btn;
+          b.classList.toggle("is-selected", isSel);
+          b.style.background = isSel ? "var(--color-ink)" : "transparent";
+          b.style.color = isSel ? "var(--color-cream)" : "var(--color-ink)";
+        });
+
+        updateUI();
+      });
+    });
+  });
+})();
+
 // Mobile nav toggle.
 (function () {
   var btn = document.querySelector("[data-nav-toggle]");

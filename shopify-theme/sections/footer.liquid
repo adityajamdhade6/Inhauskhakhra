@@ -4,7 +4,35 @@
       {{ section.settings.footer_heading | default: 'INHAUS<br>KHAKHRA' }}
     </h2>
 
-    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(251,241,224,0.2);display:grid;grid-template-columns:repeat(2,1fr);gap:40px;">
+    {%- if section.settings.show_newsletter -%}
+      <div style="margin-top:40px;max-width:480px;">
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.3em;color:rgba(251,241,224,0.5);text-transform:uppercase;">
+          {{ section.settings.newsletter_heading | default: 'Get First Crunch' }}
+        </p>
+        {%- form 'customer', id: 'FooterNewsletterForm' -%}
+          {%- if form.posted_successfully? -%}
+            <p style="margin-top:12px;color:var(--color-methi-light);font-weight:700;">You're on the list. See you in the inbox.</p>
+          {%- else -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+              <input
+                type="email"
+                name="contact[email]"
+                required
+                placeholder="Email address"
+                style="flex:1;min-width:200px;padding:12px 16px;border:2px solid var(--color-cream);border-radius:999px;background:transparent;color:var(--color-cream);font-family:var(--font-body);"
+              >
+              <button type="submit" class="ihk-btn ihk-btn--cream">Subscribe</button>
+            </div>
+            {%- if form.errors -%}
+              <p style="margin-top:8px;color:var(--color-schezwan-light);font-size:13px;">{{ form.errors.messages.email }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+
+    <div style="margin-top:56px;padding-top:40px;border-top:1px solid rgba(251,241,224,0.2);display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:40px;">
       <div>
         <p style="font-size:12px;font-weight:700;letter-spacing:0.3em;color:rgba(251,241,224,0.5);text-transform:uppercase;">Explore</p>
         <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:8px;">
@@ -19,19 +47,53 @@
         <ul style="list-style:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:8px;">
           {%- for block in section.blocks -%}
             {%- if block.type == 'flavour_link' -%}
-              <li><a href="{{ block.settings.product.url | default: '#' }}" style="font-size:14px;font-weight:500;">{{ block.settings.label }}</a></li>
+              {%- assign fp = block.settings.product -%}
+              {%- if fp == blank and block.settings.fallback_handle != blank -%}
+                {%- assign fp = all_products[block.settings.fallback_handle] -%}
+              {%- endif -%}
+              <li><a href="{{ fp.url | default: routes.all_products_collection_url }}" style="font-size:14px;font-weight:500;">{{ block.settings.label }}</a></li>
             {%- endif -%}
           {%- endfor -%}
         </ul>
       </div>
+
+      <div>
+        <p style="font-size:12px;font-weight:700;letter-spacing:0.3em;color:rgba(251,241,224,0.5);text-transform:uppercase;">Get In Touch</p>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;">
+          {%- if settings.contact_email != blank -%}
+            <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>
+          {%- endif -%}
+          {%- if settings.contact_phone != blank -%}
+            <a href="tel:{{ settings.contact_phone | replace: ' ', '' }}">{{ settings.contact_phone }}</a>
+          {%- endif -%}
+        </div>
+        <div style="margin-top:16px;">
+          {% render 'social-icons', color: 'var(--color-cream)', size: 18 %}
+        </div>
+      </div>
     </div>
 
-    <div style="margin-top:56px;border-top:1px solid rgba(251,241,224,0.2);padding-top:24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:rgba(251,241,224,0.5);">
+    {%- if settings.fssai_number != blank or settings.manufacturer_details != blank -%}
+      <div style="margin-top:40px;border-top:1px solid rgba(251,241,224,0.2);padding-top:24px;font-size:12px;color:rgba(251,241,224,0.5);max-width:640px;">
+        {%- if settings.fssai_number != blank -%}
+          <p>FSSAI License No: {{ settings.fssai_number }}</p>
+        {%- endif -%}
+        {%- if settings.manufacturer_details != blank -%}
+          <p style="margin-top:8px;">{{ settings.manufacturer_details }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div style="margin-top:24px;border-top:1px solid rgba(251,241,224,0.2);padding-top:24px;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:12px;color:rgba(251,241,224,0.5);">
       <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
-      <div style="display:flex;gap:20px;">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;">
         {%- for link in linklists.footer.links -%}
           <a href="{{ link.url }}">{{ link.title }}</a>
         {%- endfor -%}
+        {%- if shop.privacy_policy -%}<a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>{%- endif -%}
+        {%- if shop.refund_policy -%}<a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a>{%- endif -%}
+        {%- if shop.shipping_policy -%}<a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a>{%- endif -%}
+        {%- if shop.terms_of_service -%}<a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a>{%- endif -%}
       </div>
     </div>
   </div>
@@ -41,6 +103,18 @@
 {
   "name": "Footer",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Get First Crunch"
+    },
     {
       "type": "text",
       "id": "footer_heading",
@@ -60,17 +134,22 @@
       "name": "Flavour link",
       "settings": [
         { "type": "product", "id": "product", "label": "Product" },
+        {
+          "type": "text",
+          "id": "fallback_handle",
+          "label": "Product handle (used only if Product above is empty)"
+        },
         { "type": "text", "id": "label", "label": "Label" }
       ]
     }
   ],
   "default": {
     "blocks": [
-      { "type": "flavour_link", "settings": { "label": "Magic Masala" } },
-      { "type": "flavour_link", "settings": { "label": "Pani Puri" } },
-      { "type": "flavour_link", "settings": { "label": "Jeera" } },
-      { "type": "flavour_link", "settings": { "label": "Methi" } },
-      { "type": "flavour_link", "settings": { "label": "Schezwan" } }
+      { "type": "flavour_link", "settings": { "label": "Magic Masala", "fallback_handle": "magic-masala" } },
+      { "type": "flavour_link", "settings": { "label": "Pani Puri", "fallback_handle": "pani-puri" } },
+      { "type": "flavour_link", "settings": { "label": "Jeera", "fallback_handle": "jeera" } },
+      { "type": "flavour_link", "settings": { "label": "Methi", "fallback_handle": "methi" } },
+      { "type": "flavour_link", "settings": { "label": "Schezwan", "fallback_handle": "schezwan" } }
     ]
   }
 }

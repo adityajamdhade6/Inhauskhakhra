@@ -17,7 +17,7 @@
     </div>
     <div class="ihk-reveal">
       <div style="margin-top:32px;display:flex;justify-content:center;">
-        <a href="{{ section.settings.cta_link | default: '#flavours' }}" class="ihk-btn ihk-btn--cream">
+        <a href="{{ section.settings.bundle_product.url | default: section.settings.cta_link | default: routes.all_products_collection_url }}" class="ihk-btn ihk-btn--cream">
           {{ section.settings.cta_label | default: 'Shop All Flavours' }}
         </a>
       </div>
@@ -32,7 +32,8 @@
     { "type": "text", "id": "headline", "label": "Headline (use <br> for line break)", "default": "GET YOUR<br>CRUNCH ON." },
     { "type": "textarea", "id": "subhead", "label": "Subheading" },
     { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop All Flavours" },
-    { "type": "url", "id": "cta_link", "label": "Button link" }
+    { "type": "product", "id": "bundle_product", "label": "Bundle/variety-pack product (preferred if you have one)" },
+    { "type": "url", "id": "cta_link", "label": "Button link (used if no bundle product is set)" }
   ]
 }
 {% endschema %}
