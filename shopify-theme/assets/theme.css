@@ -28,8 +28,8 @@
   --color-schezwan-dark: #a91621;
   --color-schezwan-light: #f0616a;
 
-  --font-display: "Anton", "Arial Narrow", sans-serif;
-  --font-body: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fredoka", "Arial Rounded MT Bold", sans-serif;
+  --font-body: "Nunito", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -72,7 +72,8 @@ a {
 
 .ihk-display {
   font-family: var(--font-display);
-  line-height: 0.88;
+  font-weight: 600;
+  line-height: 0.96;
   letter-spacing: -0.01em;
   margin: 0;
 }
@@ -99,18 +100,22 @@ a {
   align-items: center;
   gap: 8px;
   border-radius: 999px;
-  padding: 13px 26px;
+  padding: 14px 28px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
   font-family: var(--font-body);
 }
 .ihk-btn:hover {
-  opacity: 0.85;
+  opacity: 0.9;
+  transform: scale(1.06) rotate(-1deg);
+}
+.ihk-btn:active {
+  transform: scale(0.97);
 }
 .ihk-btn--ink {
   background: var(--color-ink);
@@ -170,6 +175,28 @@ a {
   filter: drop-shadow(10px 14px 18px rgba(25, 17, 8, 0.35));
 }
 
+@keyframes ihk-wiggle {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+.ihk-wiggle-hover:hover {
+  animation: ihk-wiggle 0.4s ease-in-out;
+}
+
+.ihk-card {
+  border-radius: 28px;
+}
+
+.ihk-sticker {
+  border-radius: 999px;
+  border: 3px solid var(--color-ink);
+}
+
 @media (max-width: 767px) {
   .ihk-hide-mobile {
     display: none !important;
@@ -182,11 +209,14 @@ a {
 }
 
 .ihk-accordion {
-  border-top: 2px solid rgba(25, 17, 8, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .ihk-accordion > details {
-  padding: 20px 0;
-  border-bottom: 2px solid rgba(25, 17, 8, 0.15);
+  padding: 16px 20px;
+  border: 2px solid rgba(25, 17, 8, 0.15);
+  border-radius: 20px;
 }
 .ihk-accordion summary {
   cursor: pointer;

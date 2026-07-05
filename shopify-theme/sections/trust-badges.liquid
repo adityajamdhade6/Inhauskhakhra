@@ -1,10 +1,10 @@
 <section style="background:var(--color-cream);padding:48px 0;">
-  <div class="ihk-container" style="border-top:1px solid rgba(25,17,8,0.15);border-bottom:1px solid rgba(25,17,8,0.15);padding:32px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:40px;">
+  <div class="ihk-container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
     {%- for block in section.blocks -%}
       {%- if block.type == 'badge' -%}
-        <div style="display:flex;align-items:center;gap:12px;" {{ block.shopify_attributes }}>
-          {% render 'badge-icon', name: block.settings.icon, size: 28, color: 'var(--color-ink)' %}
-          <span style="font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--color-ink);">{{ block.settings.label }}</span>
+        <div class="ihk-sticker ihk-wiggle-hover" style="display:flex;align-items:center;gap:10px;padding:10px 20px;background:var(--color-cream);" {{ block.shopify_attributes }}>
+          {% render 'badge-icon', name: block.settings.icon, size: 24, color: 'var(--color-ink)' %}
+          <span style="font-size:13px;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;color:var(--color-ink);">{{ block.settings.label }}</span>
         </div>
       {%- endif -%}
     {%- endfor -%}

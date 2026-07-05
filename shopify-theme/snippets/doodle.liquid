@@ -1,0 +1,24 @@
+{%- comment -%}
+  Playful line-art accents. Usage:
+  {% render 'doodle', name: 'sparkle', size: 32, color: 'var(--color-cream)' %}
+  Shapes: sparkle, squiggle, ring, burst
+{%- endcomment -%}
+{%- assign name = name | default: 'sparkle' -%}
+{%- assign size = size | default: 32 -%}
+{%- assign color = color | default: 'currentColor' -%}
+
+<svg viewBox="0 0 32 32" width="{{ size }}" height="{{ size }}" role="presentation" aria-hidden="true">
+  {%- case name -%}
+    {%- when 'squiggle' -%}
+      <path d="M2 20c4-10 8 8 12-2s8 8 12-2" fill="none" stroke="{{ color }}" stroke-width="3" stroke-linecap="round" />
+    {%- when 'ring' -%}
+      <circle cx="16" cy="16" r="11" fill="none" stroke="{{ color }}" stroke-width="3" stroke-dasharray="4 6" stroke-linecap="round" />
+    {%- when 'burst' -%}
+      <g stroke="{{ color }}" stroke-width="3" stroke-linecap="round">
+        <path d="M16 3v9M16 20v9M3 16h9M20 16h9M7 7l6.5 6.5M18.5 18.5L25 25M25 7l-6.5 6.5M13.5 18.5L7 25" />
+      </g>
+    {%- else -%}
+      <path d="M16 2c1 6 3 8 9 9-6 1-8 3-9 9-1-6-3-8-9-9 6-1 8-3 9-9Z" fill="{{ color }}" />
+      <circle cx="27" cy="6" r="2" fill="{{ color }}" />
+  {%- endcase -%}
+</svg>

@@ -47,6 +47,13 @@
   {% render 'floating-piece', size: 40, rotate: -12, position: 'top:26%;left:6%;', delay: 0.2, hide_mobile: true %}
   {% render 'floating-piece', size: 30, variant: 'bite', rotate: 20, position: 'top:20%;right:8%;', slow: true, delay: 0.6, hide_mobile: true %}
   {% render 'floating-piece', size: 26, rotate: 8, position: 'bottom:30%;left:3%;', delay: 1, hide_mobile: true %}
+
+  <div class="ihk-floating ihk-hide-mobile" style="top:14%;right:20%;--float-rot:0deg;" aria-hidden="true">
+    {% render 'doodle', name: 'sparkle', size: 34, color: 'var(--color-cream)' %}
+  </div>
+  <div class="ihk-floating ihk-floating--slow ihk-hide-mobile" style="bottom:8%;right:4%;--float-rot:0deg;" aria-hidden="true">
+    {% render 'doodle', name: 'squiggle', size: 60, color: 'rgba(251,241,224,0.6)' %}
+  </div>
 </section>
 
 {% schema %}

@@ -80,8 +80,13 @@
       {% render 'floating-piece', size: 54, rotate: -16, position: 'top:6%;left:8%;', delay: 0.1 %}
       {% render 'floating-piece', size: 38, variant: 'bite', rotate: 24, position: 'right:6%;bottom:10%;', slow: true, delay: 0.5 %}
       {% render 'floating-piece', size: 30, rotate: 4, position: 'top:42%;right:2%;', delay: 0.9, hide_mobile: true %}
+      <div class="ihk-floating ihk-hide-mobile" style="top:8%;right:14%;--float-rot:0deg;" aria-hidden="true">
+        {% render 'doodle', name: 'sparkle', size: 26, color: text_color %}
+      </div>
 
-      <div class="ihk-reveal">
+      <div style="position:absolute;width:320px;height:320px;max-width:80%;aspect-ratio:1;border-radius:50%;background:{{ bg_dark }};opacity:0.55;" aria-hidden="true"></div>
+
+      <div class="ihk-reveal ihk-wiggle-hover" style="position:relative;">
         {%- if p != blank -%}
           <img
             src="{{ p.featured_image | image_url: width: 700 }}"

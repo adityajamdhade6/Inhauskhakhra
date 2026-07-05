@@ -13,9 +13,9 @@
       {{ shop.name | default: 'INHAUS KHAKHRA' | upcase }}
     </a>
 
-    <nav class="ihk-hide-mobile" style="display:flex;align-items:center;gap:32px;">
+    <nav class="ihk-hide-mobile" style="display:flex;align-items:center;gap:8px;">
       {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}" style="font-size:14px;font-weight:700;letter-spacing:0.02em;text-transform:uppercase;color:var(--color-cream);">
+        <a href="{{ link.url }}" class="ihk-nav-link" style="font-size:14px;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;color:var(--color-cream);padding:8px 16px;border-radius:999px;">
           {{ link.title }}
         </a>
       {%- endfor -%}
@@ -67,6 +67,13 @@
     .ihk-nav-toggle {
       display: flex !important;
     }
+  }
+  .ihk-nav-link {
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+  .ihk-nav-link:hover {
+    background: rgba(251, 241, 224, 0.15);
+    transform: translateY(-2px);
   }
 </style>
 
