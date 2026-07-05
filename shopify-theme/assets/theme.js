@@ -126,6 +126,28 @@ function ihkFormatMoney(cents, format) {
   });
 })();
 
+// Subscribe & Save: wire the selected selling plan into a hidden cart-form field.
+(function () {
+  var pickers = document.querySelectorAll("[data-selling-plan-picker]");
+  pickers.forEach(function (picker) {
+    var form = picker.closest("form");
+    if (!form) return;
+    var input = form.querySelector("[data-selling-plan-input]");
+    if (!input) return;
+    picker.querySelectorAll("[data-selling-plan-radio]").forEach(function (radio) {
+      radio.addEventListener("change", function () {
+        if (radio.value) {
+          input.value = radio.value;
+          input.disabled = false;
+        } else {
+          input.value = "";
+          input.disabled = true;
+        }
+      });
+    });
+  });
+})();
+
 // Mobile nav toggle.
 (function () {
   var btn = document.querySelector("[data-nav-toggle]");

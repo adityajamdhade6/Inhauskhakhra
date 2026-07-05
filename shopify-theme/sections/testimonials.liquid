@@ -1,0 +1,70 @@
+{%- comment -%}
+  Manual testimonial blocks — add real customer quotes as you collect them
+  (DMs, order feedback, etc). Renders nothing until at least one block is added.
+  For an automated star-rating review widget, connect a reviews app (e.g.
+  Judge.me or Loox) instead.
+{%- endcomment -%}
+{%- if section.blocks.size > 0 -%}
+  <section style="background:var(--color-ink);padding:96px 0;">
+    <div class="ihk-container">
+      <span class="ihk-eyebrow" style="color:rgba(251,241,224,0.7);">{{ section.settings.eyebrow | default: 'From The Crunch-Obsessed' }}</span>
+      <h2 class="ihk-display" style="margin-top:16px;color:var(--color-cream);font-size:clamp(28px, 4vw, 48px);">
+        {{ section.settings.headline | default: 'WHAT THEY&rsquo;RE SAYING.' }}
+      </h2>
+      <div style="margin-top:48px;display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:32px;">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'quote' -%}
+            <div style="padding:28px;border:1px solid rgba(251,241,224,0.2);border-radius:16px;" {{ block.shopify_attributes }}>
+              {%- if block.settings.rating != blank -%}
+                <div style="display:flex;gap:4px;margin-bottom:16px;">
+                  {%- for i in (1..5) -%}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="{% if i <= block.settings.rating %}var(--color-methi-light){% else %}none{% endif %}" stroke="var(--color-methi-light)" stroke-width="1.5">
+                      <path d="M12 3l2.6 5.6 6 .7-4.4 4.2 1.1 6-5.3-3-5.3 3 1.1-6L3.4 9.3l6-.7L12 3Z" stroke-linejoin="round" />
+                    </svg>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+              <p style="font-size:16px;font-weight:500;color:var(--color-cream);line-height:1.6;">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+              <p style="margin-top:16px;font-size:13px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:rgba(251,241,224,0.6);">
+                {{ block.settings.author }}{% if block.settings.location != blank %}, {{ block.settings.location }}{% endif %}
+              </p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "From The Crunch-Obsessed" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "WHAT THEY'RE SAYING." }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "author", "label": "Author name" },
+        { "type": "text", "id": "location", "label": "Location (optional)" },
+        {
+          "type": "select",
+          "id": "rating",
+          "label": "Rating (optional)",
+          "options": [
+            { "value": "", "label": "None" },
+            { "value": "5", "label": "5 stars" },
+            { "value": "4", "label": "4 stars" },
+            { "value": "3", "label": "3 stars" }
+          ],
+          "default": ""
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

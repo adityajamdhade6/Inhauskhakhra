@@ -64,6 +64,30 @@
           </script>
         {%- endif -%}
 
+        {%- if p.selling_plan_groups.size > 0 -%}
+          {%- assign first_group = p.selling_plan_groups.first -%}
+          <div style="margin-bottom:20px;" data-selling-plan-picker>
+            <p style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-ink);margin-bottom:8px;">Purchase Options</p>
+            <label style="display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer;">
+              <input type="radio" name="selling_plan_choice" value="" checked data-selling-plan-radio>
+              <span style="font-size:15px;font-weight:600;color:var(--color-ink);">One-time purchase</span>
+            </label>
+            {%- for plan in first_group.selling_plans -%}
+              <label style="display:flex;align-items:center;gap:10px;padding:12px 0;cursor:pointer;">
+                <input type="radio" name="selling_plan_choice" value="{{ plan.id }}" data-selling-plan-radio>
+                <span style="font-size:15px;font-weight:600;color:var(--color-ink);">
+                  Subscribe &mdash; {{ plan.name }}
+                  {%- assign adj = plan.price_adjustments.first -%}
+                  {%- if adj.value_type == 'percentage' -%}
+                    <span style="color:var(--color-jeera);">(Save {{ adj.value }}%)</span>
+                  {%- endif -%}
+                </span>
+              </label>
+            {%- endfor -%}
+          </div>
+          <input type="hidden" name="selling_plan" data-selling-plan-input disabled>
+        {%- endif -%}
+
         <div>
           <button type="submit" class="ihk-btn ihk-btn--ink" data-product-submit {% unless p.available %}disabled{% endunless %}>
             {% if p.available %}Add to Cart{% else %}Sold Out{% endif %}

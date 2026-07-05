@@ -3,7 +3,25 @@
     "main": {
       "type": "main-product",
       "settings": {}
+    },
+    "trust-badges": {
+      "type": "trust-badges",
+      "settings": {},
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "icon": "veg", "label": "100% Vegetarian" } },
+        "b2": { "type": "badge", "settings": { "icon": "baked", "label": "Baked, Not Fried" } },
+        "b3": { "type": "badge", "settings": { "icon": "no-palm-oil", "label": "No Palm Oil" } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "press-strip": {
+      "type": "press-strip",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["main", "trust-badges", "press-strip", "testimonials"]
 }
