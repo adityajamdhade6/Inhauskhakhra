@@ -19,7 +19,7 @@ export function Nav() {
     <header className="absolute inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-5 md:px-10 md:py-7">
         <Link href="#top" className="font-display text-xl tracking-wide text-cream md:text-2xl">
-          INHAUS KHAKHRA
+          INHAUS
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

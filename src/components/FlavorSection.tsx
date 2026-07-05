@@ -18,6 +18,7 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
   return (
     <section
       id={flavor.id}
+      data-bg-color={flavor.color}
       className={`relative flex min-h-[90vh] items-center overflow-hidden py-20 md:min-h-screen md:py-0`}
       style={{ background: flavor.color }}
     >

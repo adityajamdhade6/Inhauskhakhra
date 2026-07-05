@@ -13,10 +13,8 @@ export function Footer() {
   return (
     <footer className="bg-ink py-16 text-cream md:py-20">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-        <h2 className="font-display text-[13vw] leading-[0.85] tracking-tight md:text-[6vw]">
+        <h2 className="font-display text-[16vw] leading-[0.85] tracking-tight md:text-[7.5vw]">
           INHAUS
-          <br />
-          KHAKHRA
         </h2>
 
         <div className="mt-14 grid grid-cols-2 gap-10 border-t border-cream/20 pt-10 md:grid-cols-4">

@@ -6,7 +6,10 @@ import { Button } from "./ui/Button";
 
 export function CTASection() {
   return (
-    <section className="relative overflow-hidden bg-schezwan py-28 text-center md:py-36">
+    <section
+      data-bg-color="var(--color-schezwan)"
+      className="relative overflow-hidden bg-schezwan py-28 text-center md:py-36"
+    >
       <BackgroundGraphic variant="sunburst" className="text-schezwan-light opacity-30" />
 
       <FloatingDisc size={44} rotate={-10} className="top-[15%] left-[8%] hidden md:block" />

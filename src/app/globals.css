@@ -2,47 +2,48 @@
 
 @theme {
   /* ---- brand base ---- */
-  --color-cream: #fbf1e0;
-  --color-cream-dim: #f3e3c4;
-  --color-ink: #191108;
-  --color-ink-soft: #4a3d2b;
+  --color-cream: #f7f4ec;
+  --color-cream-dim: #ece5d2;
+  --color-ink: #0e0d0b;
+  --color-ink-soft: #4a463d;
 
   /* ---- baked khakhra disc tones ---- */
   --color-khakhra: #e7be7c;
   --color-khakhra-dark: #c2934c;
 
-  /* ---- Magic Masala :: hot pink ---- */
-  --color-masala: #ff2d78;
-  --color-masala-dark: #d91f63;
-  --color-masala-light: #ff7aac;
+  /* ---- Magic Masala :: bright yellow ---- */
+  --color-masala: #f7c600;
+  --color-masala-dark: #c79c00;
+  --color-masala-light: #ffe066;
 
-  /* ---- Pani Puri :: orange ---- */
-  --color-panipuri: #ff6a1a;
-  --color-panipuri-dark: #e2540a;
-  --color-panipuri-light: #ff9d5c;
+  /* ---- Pani Puri :: fresh green ---- */
+  --color-panipuri: #2ecc71;
+  --color-panipuri-dark: #1f9d57;
+  --color-panipuri-light: #86ecac;
 
-  /* ---- Jeera :: bright yellow ---- */
-  --color-jeera: #ffcc00;
-  --color-jeera-dark: #e0af00;
-  --color-jeera-light: #ffe066;
+  /* ---- Jeera :: royal blue ---- */
+  --color-jeera: #2a3fd6;
+  --color-jeera-dark: #1c2a9e;
+  --color-jeera-light: #8b97ff;
 
-  /* ---- Methi :: green ---- */
-  --color-methi: #2e9e4f;
-  --color-methi-dark: #1f7a3b;
-  --color-methi-light: #67c485;
+  /* ---- Methi :: dark forest green ---- */
+  --color-methi: #0f3d24;
+  --color-methi-dark: #082818;
+  --color-methi-light: #4d8f68;
 
-  /* ---- Schezwan :: red ---- */
-  --color-schezwan: #c91224;
-  --color-schezwan-dark: #a91621;
-  --color-schezwan-light: #f0616a;
+  /* ---- Schezwan :: bright red ---- */
+  --color-schezwan: #ff3b30;
+  --color-schezwan-dark: #cc1f1f;
+  --color-schezwan-light: #ff8a80;
 
-  --font-display: var(--font-fredoka), "Arial Rounded MT Bold", sans-serif;
-  --font-body: var(--font-nunito), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-display-family), "Helvetica Neue", sans-serif;
+  --font-body: var(--font-body-family), "Helvetica Neue", Arial, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
   --animate-spin-slow: spin 24s linear infinite;
   --animate-wiggle: wiggle 0.4s ease-in-out;
+  --animate-drift: drift 14s ease-in-out infinite;
 
   @keyframes float {
     0%,
@@ -63,6 +64,19 @@
       transform: rotate(3deg);
     }
   }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(3%, -4%) scale(1.05);
+    }
+    66% {
+      transform: translate(-2%, 3%) scale(0.97);
+    }
+  }
 }
 
 html {
@@ -71,9 +85,11 @@ html {
 }
 
 body {
-  background: var(--color-cream);
+  --scroll-bg: var(--color-cream);
+  background: var(--scroll-bg);
   color: var(--color-ink);
   font-family: var(--font-body);
+  transition: background-color 0.7s ease;
 }
 
 ::selection {
