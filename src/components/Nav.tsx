@@ -27,7 +27,7 @@ export function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-bold tracking-wide text-cream uppercase transition-opacity hover:opacity-70"
+              className="rounded-full px-4 py-2 text-sm font-extrabold tracking-wide text-cream uppercase transition-all hover:-translate-y-0.5 hover:bg-cream/15"
             >
               {l.label}
             </Link>

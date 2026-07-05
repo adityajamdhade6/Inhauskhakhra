@@ -26,7 +26,7 @@ export function Button({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold tracking-wide uppercase transition-colors duration-200 ${variants[variant]} ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-extrabold tracking-wide uppercase transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-[1.06] hover:-rotate-1 active:scale-95 ${variants[variant]} ${className}`}
     >
       {children}
     </Link>

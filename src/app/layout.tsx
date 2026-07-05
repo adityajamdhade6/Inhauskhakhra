@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Anton, Space_Grotesk } from "next/font/google";
+import { Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
 
-const anton = Anton({
-  variable: "--font-anton",
-  weight: "400",
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  weight: ["500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const grotesk = Space_Grotesk({
-  variable: "--font-grotesk",
+const nunito = Nunito({
+  variable: "--font-nunito",
+  weight: ["400", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -55,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${anton.variable} ${grotesk.variable}`}>
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable}`}>
       <body className="min-h-dvh bg-cream text-ink antialiased">
         {children}
       </body>

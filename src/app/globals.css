@@ -36,12 +36,13 @@
   --color-schezwan-dark: #a91621;
   --color-schezwan-light: #f0616a;
 
-  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
-  --font-body: var(--font-grotesk), "Helvetica Neue", Arial, sans-serif;
+  --font-display: var(--font-fredoka), "Arial Rounded MT Bold", sans-serif;
+  --font-body: var(--font-nunito), "Helvetica Neue", Arial, sans-serif;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
   --animate-spin-slow: spin 24s linear infinite;
+  --animate-wiggle: wiggle 0.4s ease-in-out;
 
   @keyframes float {
     0%,
@@ -50,6 +51,16 @@
     }
     50% {
       transform: translateY(-18px) rotate(var(--float-rot, 0deg));
+    }
+  }
+
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
     }
   }
 }
@@ -68,6 +79,10 @@ body {
 ::selection {
   background: var(--color-ink);
   color: var(--color-cream);
+}
+
+.font-display {
+  font-weight: 600;
 }
 
 .text-outline {

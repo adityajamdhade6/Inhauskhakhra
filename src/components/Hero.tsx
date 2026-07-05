@@ -5,6 +5,7 @@ import { Button } from "./ui/Button";
 import { BackgroundGraphic } from "./graphics/BackgroundGraphic";
 import { ProductPack } from "./graphics/ProductPack";
 import { FloatingDisc } from "./graphics/FloatingDisc";
+import { Doodle } from "./graphics/Doodle";
 import { Reveal } from "./motion/Reveal";
 
 const rotations = [-10, -4, 2, 8, 14];
@@ -58,6 +59,13 @@ export function Hero() {
       <FloatingDisc size={40} rotate={-12} className="top-[26%] left-[6%] hidden md:block" delay={0.2} />
       <FloatingDisc size={30} variant="bite" rotate={20} className="top-[20%] right-[8%] hidden md:block" slow delay={0.6} />
       <FloatingDisc size={26} rotate={8} className="bottom-[30%] left-[3%] hidden md:block" delay={1} />
+
+      <div className="animate-float pointer-events-none absolute top-[14%] right-[20%] hidden md:block" aria-hidden="true">
+        <Doodle name="sparkle" size={34} color="var(--color-cream)" />
+      </div>
+      <div className="animate-float-slow pointer-events-none absolute right-[4%] bottom-[8%] hidden md:block" aria-hidden="true">
+        <Doodle name="squiggle" size={60} color="rgba(251,241,224,0.6)" />
+      </div>
     </section>
   );
 }

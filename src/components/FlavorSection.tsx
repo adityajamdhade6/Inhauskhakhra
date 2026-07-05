@@ -3,6 +3,7 @@ import { shopUrlFor } from "@/lib/shopify";
 import { BackgroundGraphic } from "./graphics/BackgroundGraphic";
 import { ProductPack } from "./graphics/ProductPack";
 import { FloatingDisc } from "./graphics/FloatingDisc";
+import { Doodle } from "./graphics/Doodle";
 import { SpiceIcon } from "./graphics/SpiceIcon";
 import { Button } from "./ui/Button";
 import { SectionLabel } from "./ui/SectionLabel";
@@ -86,7 +87,17 @@ export function FlavorSection({ flavor, reverse = false }: { flavor: Flavor; rev
             className="top-[42%] right-[2%] hidden sm:block"
             delay={0.9}
           />
-          <Reveal delay={0.15}>
+          <div className="animate-float pointer-events-none absolute top-[8%] right-[14%] hidden md:block" aria-hidden="true">
+            <Doodle name="sparkle" size={26} color={iconColor} />
+          </div>
+
+          <div
+            className="pointer-events-none absolute top-1/2 left-1/2 aspect-square w-[320px] max-w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-55"
+            style={{ background: flavor.colorDark }}
+            aria-hidden="true"
+          />
+
+          <Reveal delay={0.15} className="hover:animate-wiggle relative">
             <ProductPack flavor={flavor} width={280} rotate={reverse ? 7 : -7} />
           </Reveal>
         </div>
